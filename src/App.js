@@ -1,7 +1,5 @@
-import logo from './logo.svg';
 import './App.css';
-import { useState, useEffect } from "react"
-import { Route } from "react-router-dom";
+import { useState } from "react"
 import Todos from './components/Todos';
 
 function App() {
