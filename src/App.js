@@ -1,6 +1,4 @@
 import "./App.css";
-// import { useState } from "react"
-import Todos from "./components/Todos";
 import { Button } from "@mui/material";
 import { Link as RouterLink } from "react-router-dom";
 import image from "./components/image/donut.jpg"
