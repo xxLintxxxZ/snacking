@@ -49,21 +49,21 @@ export default function Login() {
             
         } 
     
-  const addTodo = async () => {
-    const body = JSON.stringify({
-      subject: "Another",
-      details: "New todo",
-    });
+//   const addTodo = async () => {
+//     const body = JSON.stringify({
+//       subject: "Another",
+//       details: "New todo",
+//     });
 
-    await fetch("https://snackshop589.herokuapp.com/todos/", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + token,
-      },
-      body,
-    });
-  };
+//     await fetch("https://snackshop589.herokuapp.com/todos/", {
+//       method: "POST",
+//       headers: {
+//         "Content-Type": "application/json",
+//         Authorization: "Bearer " + token,
+//       },
+//       body,
+//     });
+//   };
 
   const handleSubmit = (event) => {
     event.preventDefault();

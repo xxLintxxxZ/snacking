@@ -9,7 +9,7 @@ function AddProduct() {
     // http://localhost:8000/products/
 
     const add = async (prodname, quantity, price) => {
-        const response = await fetch("https://snackshop589.herokuapp.com/products/", {
+         await fetch("https://snackshop589.herokuapp.com/products/", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -17,7 +17,8 @@ function AddProduct() {
             body: JSON.stringify({
                 prodname, quantity, price
             }),
-        }
+          
+        }    
         );
     }
 

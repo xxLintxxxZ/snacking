@@ -1,6 +1,4 @@
 import "./App.css";
-import { Button } from "@mui/material";
-import { Link as RouterLink } from "react-router-dom";
 import image from "./components/image/donut.jpg"
 import Home from "./components/Home";
 
