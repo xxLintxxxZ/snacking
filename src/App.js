@@ -1,6 +1,7 @@
 import './App.css';
 import { useState } from "react"
 import Todos from './components/Todos';
+import Login from './components/Login';
 
 function App() {
 
@@ -43,15 +44,14 @@ function App() {
   return (
     <div className="App">
        <h1>Todos</h1>
-      <button onClick={() => login("admin", process.env.REACT_APP_NOT_SECRET_CODE)}>Login</button>
-        <Todos/>
+      {/* <button onClick={() => login("admin", process.env.REACT_APP_NOT_SECRET_CODE)}>Login</button> */}
+      <Todos />
         {/* <Route
           exact
           path="/new"
           render={(routerProps) => <Form {...routerProps} posts={posts} />}
         /> */}
       <button onClick={() => addTodo()}>Add</button>
-
     </div>
   );
 }
