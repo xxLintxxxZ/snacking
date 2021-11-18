@@ -1,11 +1,11 @@
 import './App.css';
-import { useState } from "react"
+// import { useState } from "react"
 import Todos from './components/Todos';
 // import Login from './components/Login';
 
 function App() {
 
-  const [token, setToken] = useState('')
+  // const [token, setToken] = useState('')
   // const queryClient = useQueryClient();
   // import { useQueryClient } from "react-query";
   // const login = async (username, password) => {
@@ -26,20 +26,20 @@ function App() {
   // };
 
  
-  const addTodo = async () => {
-    const body = JSON.stringify({
-      subject: "Another", details: "New todo"
-    });
+  // const addTodo = async () => {
+  //   const body = JSON.stringify({
+  //     subject: "Another", details: "New todo"
+  //   });
 
-    await fetch("https://snackshop589.herokuapp.com/todos/", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": "Bearer " + token
-      },
-      body,
-    }); 
-  }
+  //   await fetch("https://snackshop589.herokuapp.com/todos/", {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //       "Authorization": "Bearer " + token
+  //     },
+  //     body,
+  //   }); 
+  // }
 
   return (
     <div className="App">
@@ -51,7 +51,7 @@ function App() {
           path="/new"
           render={(routerProps) => <Form {...routerProps} posts={posts} />}
         /> */}
-      <button onClick={() => addTodo()}>Add</button>
+      {/* <button onClick={() => addTodo()}>Add</button> */}
     </div>
   );
 }
