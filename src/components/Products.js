@@ -13,7 +13,7 @@ function Products() {
   
     useEffect(() => {
       const fetchTodo = async () => {
-        const response = await fetch("http://localhost:8000/products/");
+        const response = await fetch("https://snackshop589.herokuapp.com/products/");
         const prod = await response.json();
         setProd(prod)
       };
