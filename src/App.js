@@ -1,10 +1,10 @@
-import './App.css';
+import "./App.css";
 // import { useState } from "react"
-import Todos from './components/Todos';
-// import Login from './components/Login';
+import Todos from "./components/Todos";
+import { Button } from "@mui/material";
+import { Link as RouterLink } from "react-router-dom";
 
 function App() {
-
   // const [token, setToken] = useState('')
   // const queryClient = useQueryClient();
   // import { useQueryClient } from "react-query";
@@ -25,7 +25,6 @@ function App() {
   //   setToken(data.access);
   // };
 
- 
   // const addTodo = async () => {
   //   const body = JSON.stringify({
   //     subject: "Another", details: "New todo"
@@ -38,15 +37,18 @@ function App() {
   //       "Authorization": "Bearer " + token
   //     },
   //     body,
-  //   }); 
+  //   });
   // }
 
   return (
     <div className="App">
-       <h1>Todos</h1>
+      <h1>Todos</h1>
       {/* <button onClick={() => login("admin", process.env.REACT_APP_NOT_SECRET_CODE)}>Login</button> */}
       <Todos />
-        {/* <Route
+      <Button variant="outlined" component={RouterLink} to="/login">
+        Login
+      </Button>
+      {/* <Route
           exact
           path="/new"
           render={(routerProps) => <Form {...routerProps} posts={posts} />}
