@@ -3,6 +3,8 @@ import "./App.css";
 import Todos from "./components/Todos";
 import { Button } from "@mui/material";
 import { Link as RouterLink } from "react-router-dom";
+import image from "./components/image/donut.jpg"
+import Home from "./components/Home";
 
 function App() {
   // const [token, setToken] = useState('')
@@ -42,9 +44,12 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Todos</h1>
+      <h1>Main</h1>
+      <img  src={image} alt="logo" height="80" /> 
       {/* <button onClick={() => login("admin", process.env.REACT_APP_NOT_SECRET_CODE)}>Login</button> */}
-      <Todos />
+ 
+
+      <Home/>
       <Button variant="outlined" component={RouterLink} to="/login">
         Login
       </Button>
