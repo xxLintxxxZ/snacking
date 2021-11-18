@@ -84,6 +84,9 @@ export default function NavBar() {
             >
               <Button component={RouterLink} to="/products" sx={{ color: "white" }}>
                 Products
+                </Button>
+              <Button component={RouterLink} to="/addproduct" sx={{ color: "white" }}>
+                Add Products
               </Button>
               <Button component={RouterLink} to="/login" sx={{ color: "white" }}>
               Login

@@ -7,8 +7,10 @@ import { render } from "react-dom";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "./components/Login";
 import Navbar from "./components/Navbar";
-import Todos
-  from "./components/Todos";
+import Products from "./components/Products";
+import Product from "./components/Product";
+import AddProduct from "./components/AddProduct"
+  
 const rootElement = document.getElementById("root");
 render(
     <BrowserRouter>
@@ -16,7 +18,9 @@ render(
     <Routes>
       <Route path="/" element={<App />} />
       <Route path="login" element={<Login />} />
-      <Route path="products" element={<Todos />} />
+      <Route path="products" element={<Products />} />
+      <Route path= "addproduct" element = {<AddProduct/>}/>
+      <Route path=":productName" element={<Product />} />
     </Routes>
     </BrowserRouter>,
     rootElement

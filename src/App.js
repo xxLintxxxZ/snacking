@@ -46,16 +46,11 @@ function App() {
       <img  src={image} alt="logo" height="80" /> 
       {/* <button onClick={() => login("admin", process.env.REACT_APP_NOT_SECRET_CODE)}>Login</button> */}
  
-
       <Home/>
-      <Button variant="outlined" component={RouterLink} to="/login">
+      {/* <Button variant="outlined" component={RouterLink} to="/login">
         Login
-      </Button>
-      {/* <Route
-          exact
-          path="/new"
-          render={(routerProps) => <Form {...routerProps} posts={posts} />}
-        /> */}
+      </Button> */}
+     
       {/* <button onClick={() => addTodo()}>Add</button> */}
     </div>
   );

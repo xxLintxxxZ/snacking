@@ -11,7 +11,6 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
-
 const theme = createTheme({
   palette: {
     type: "dark",
@@ -27,49 +26,51 @@ const theme = createTheme({
 });
 
 export default function Login() {
+  const [show, setShow] = useState(true);
   const [token, setToken] = useState("");
-
-  const login = async (username, password) => {
-    const response = await fetch(
-      "https://snackshop589.herokuapp.com/api/token/",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          username,
-          password,
-        }),
-      }
-    );
-
-    const data = await response.json();
-    // console.log(data);
-    setToken(data.access);
-  };
+ 
+    const login = async (username, password) => {
+        
+            const response = await fetch(
+                "https://snackshop589.herokuapp.com/api/token/",
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        username,
+                        password,
+                    }),
+                }
+            );
+            const data = await response.json();
+            setToken(data.access);
+            
+        } 
     
-const addTodo = async () => {
+  const addTodo = async () => {
     const body = JSON.stringify({
-      subject: "Another", details: "New todo"
+      subject: "Another",
+      details: "New todo",
     });
 
     await fetch("https://snackshop589.herokuapp.com/todos/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "Authorization": "Bearer " + token
+        Authorization: "Bearer " + token,
       },
       body,
-    }); 
-  }
-    
+    });
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-      console.log(data.get('username'));
+    console.log(data.get("username"));
     //   console.log(data.get('password'));
-    login(data.get('username'), data.get('password'))
+    login(data.get("username"), data.get("password"));
     // const queryClient = useQueryClient();
     // import { useQueryClient } from "react-query";
   };
@@ -85,8 +86,7 @@ const addTodo = async () => {
             alignItems: "center",
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
-          </Avatar>
+          <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}></Avatar>
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
@@ -116,9 +116,6 @@ const addTodo = async () => {
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
-            //   onClick={() =>
-            //     login("admin", process.env.REACT_APP_NOT_SECRET_CODE)
-            //   
             >
               Sign In
             </Button>
@@ -126,11 +123,12 @@ const addTodo = async () => {
               <Grid item>
                 <Link component={RouterLink} to="/SignUp" variant="body2">
                   {"Don't have an account? Sign Up"}
-                    </Link>
-                <button onClick={() => addTodo()}>Add</button>
+                </Link>
               </Grid>
             </Grid>
           </Box>
+          <button onClick={() => setShow((a) => !a)}>toggle</button>
+          <div style={{ display: show ? "block" : "none" }}>hello</div>
         </Box>
       </Container>
     </ThemeProvider>
