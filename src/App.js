@@ -1,29 +1,29 @@
 import './App.css';
 import { useState } from "react"
 import Todos from './components/Todos';
-import Login from './components/Login';
+// import Login from './components/Login';
 
 function App() {
 
   const [token, setToken] = useState('')
   // const queryClient = useQueryClient();
   // import { useQueryClient } from "react-query";
-  const login = async (username, password) => {
-    const response = await fetch("https://snackshop589.herokuapp.com/api/token/", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        username,
-        password,
-      }),
-    });
+  // const login = async (username, password) => {
+  //   const response = await fetch("https://snackshop589.herokuapp.com/api/token/", {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify({
+  //       username,
+  //       password,
+  //     }),
+  //   });
 
-    const data = await response.json();
-    console.log(data)
-    setToken(data.access);
-  };
+  //   const data = await response.json();
+  //   console.log(data)
+  //   setToken(data.access);
+  // };
 
  
   const addTodo = async () => {
