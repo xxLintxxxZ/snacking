@@ -2,12 +2,12 @@ import React from "react";
 import { Button } from "@mui/material";
 import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
-
+import { useNavigate } from "react-router-dom";
 
 function AddProduct() {
 
     // http://localhost:8000/products/
-
+    let navigate = useNavigate();
     const add = async (prodname, quantity, price) => {
          await fetch("https://snackshop589.herokuapp.com/products/", {
             method: "POST",
@@ -17,8 +17,7 @@ function AddProduct() {
             body: JSON.stringify({
                 prodname, quantity, price
             }),
-          
-        }    
+            }    
         );
     }
 
@@ -30,6 +29,7 @@ function AddProduct() {
         add(data.get('prodname'), data.get('quantity'), data.get('price'))
         // const queryClient = useQueryClient();
         // import { useQueryClient } from "react-query";
+        navigate("/products");
     };
 
 
