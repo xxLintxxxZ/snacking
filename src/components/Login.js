@@ -28,42 +28,40 @@ const theme = createTheme({
 export default function Login() {
   const [show, setShow] = useState(true);
   const [token, setToken] = useState("");
- 
-    const login = async (username, password) => {
-        
-            const response = await fetch(
-                "https://snackshop589.herokuapp.com/api/token/",
-                {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify({
-                        username,
-                        password,
-                    }),
-                }
-            );
-            const data = await response.json();
-            setToken(data.access);
-            
-        } 
-    
-//   const addTodo = async () => {
-//     const body = JSON.stringify({
-//       subject: "Another",
-//       details: "New todo",
-//     });
 
-//     await fetch("https://snackshop589.herokuapp.com/todos/", {
-//       method: "POST",
-//       headers: {
-//         "Content-Type": "application/json",
-//         Authorization: "Bearer " + token,
-//       },
-//       body,
-//     });
-//   };
+  const login = async (username, password) => {
+    const response = await fetch(
+      "https://snackshop589.herokuapp.com/api/token/",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          username,
+          password,
+        }),
+      }
+    );
+    const data = await response.json();
+    setToken(data.access);
+  };
+
+  const addTodo = async () => {
+    const body = JSON.stringify({
+      subject: "Another",
+      details: "New todo",
+    });
+
+    await fetch("https://snackshop589.herokuapp.com/todos/", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + token,
+      },
+      body,
+    });
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -116,6 +114,7 @@ export default function Login() {
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
+              onClick={() => setShow((a) => !a)}
             >
               Sign In
             </Button>
@@ -127,7 +126,7 @@ export default function Login() {
               </Grid>
             </Grid>
           </Box>
-          <button onClick={() => setShow((a) => !a)}>toggle</button>
+          <button disabled onClick={() => addTodo()}>toggle</button>
           <div style={{ display: show ? "block" : "none" }}>hello</div>
         </Box>
       </Container>
