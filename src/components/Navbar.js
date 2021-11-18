@@ -8,90 +8,70 @@ import { Link as RouterLink } from "react-router-dom";
 import { Link } from "@mui/material";
 import EmojiFoodBeverageIcon from "@mui/icons-material/EmojiFoodBeverage";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-
+import { IconButton } from "@mui/material";
 
 const theme = createTheme({
-    palette: {
-      type: 'dark',
-      primary: {
-        main: '#8897e8',
-      },
-    
-      text: {
-        primary: '#6666d8',
-        secondary: '#8c51ec',
-      },
-    }
-  });
+  palette: {
+    type: "dark",
+    primary: {
+      main: "#8897e8",
+    },
+
+    text: {
+      primary: "#6666d8",
+      secondary: "#8c51ec",
+    },
+  },
+});
 export default function NavBar() {
   return (
     <ThemeProvider theme={theme}>
-      <Box
-        sx={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          height: "100px",
-        }}
-      >
+      <Box sx={{ flexGrow: 1 }}>
         <AppBar position="static">
           <Toolbar>
-            <div style={{ display: "flex", flex: 1, justifyContent: "left" }}>
+           
               <Link
                 component={RouterLink}
                 to="/"
                 underline="hover"
                 sx={{ color: "white" }}
               >
+              <IconButton
+            size="large"
+            edge="start"
+            color="inherit"
+            aria-label="menu"
+            sx={{ mr: 2 }}
+          >
+                <EmojiFoodBeverageIcon />
+              
+          </IconButton></Link>
+          <Typography variant="h10" component="div" sx={{ flexGrow: 1, color:"white" }}>
+           HOME
+          </Typography>
+          
                 <Button
-                  size="large"
-                  edge="start"
-                  color="inherit"
-                  aria-label="menu"
+                  component={RouterLink}
+                  to="/products"
+                  sx={{ color: "white" }}
                 >
-                  <Typography sx={{ pr: 2 }}>
-                    <EmojiFoodBeverageIcon />
-                  </Typography>
-                  <Typography
-                    sx={{
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                    }}
-                  >
-                    Home
-                  </Typography>
+                  Products
                 </Button>
-              </Link>
-            </div>
-
-            <Typography
-              variant="h6"
-              component="div"
-              sx={{
-                flex: 1,
-                color: "white",
-                minHeight: "100px",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-              SNACK SHOP
-            </Typography>
-            <Typography
-              style={{ display: "flex", flex: 1, justifyContent: "right" }}
-            >
-              <Button component={RouterLink} to="/products" sx={{ color: "white" }}>
-                Products
+                <Button
+                  component={RouterLink}
+                  to="/addproduct"
+                  sx={{ color: "white" }}
+                >
+                  Add Products
                 </Button>
-              <Button component={RouterLink} to="/addproduct" sx={{ color: "white" }}>
-                Add Products
-              </Button>
-              <Button component={RouterLink} to="/login" sx={{ color: "white" }}>
-              Login
-              </Button>
-            </Typography>
+                <Button
+                  component={RouterLink}
+                  to="/login"
+                  sx={{ color: "white" }}
+                >
+                  Login
+                </Button>
+          
           </Toolbar>
         </AppBar>
       </Box>

@@ -5,6 +5,7 @@ import { Box } from "@mui/material";
 import { Typography } from "@mui/material";
 import { Container } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material";
+import image from "./image/donut.jpg"
 
 const theme = createTheme({
   palette: {
@@ -25,7 +26,6 @@ const Home = () => {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-
       <main>
         {/* Hero unit */}
         <Box
@@ -36,6 +36,7 @@ const Home = () => {
           }}
         >
           <Container maxWidth="sm">
+          <img src={image} alt="logo" height="80" />
             <Typography
               component="h1"
               variant="h2"
