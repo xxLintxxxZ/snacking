@@ -45,14 +45,31 @@ export default function Login() {
     );
 
     const data = await response.json();
-    console.log(data);
+    // console.log(data);
     setToken(data.access);
   };
+    
+const addTodo = async () => {
+    const body = JSON.stringify({
+      subject: "Another", details: "New todo"
+    });
 
+    await fetch("https://snackshop589.herokuapp.com/todos/", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer " + token
+      },
+      body,
+    }); 
+  }
+    
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-
+      console.log(data.get('username'));
+    //   console.log(data.get('password'));
+    login(data.get('username'), data.get('password'))
     // const queryClient = useQueryClient();
     // import { useQueryClient } from "react-query";
   };
@@ -78,10 +95,9 @@ export default function Login() {
               margin="normal"
               required
               fullWidth
-              id="email"
-              label="Email Address"
-              name="email"
-              autoComplete="email"
+              id="username"
+              label="User Name"
+              name="username"
               autoFocus
             />
             <TextField
@@ -100,9 +116,9 @@ export default function Login() {
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
-              onClick={() =>
-                login("admin", process.env.REACT_APP_NOT_SECRET_CODE)
-              }
+            //   onClick={() =>
+            //     login("admin", process.env.REACT_APP_NOT_SECRET_CODE)
+            //   
             >
               Sign In
             </Button>
@@ -110,7 +126,8 @@ export default function Login() {
               <Grid item>
                 <Link component={RouterLink} to="/SignUp" variant="body2">
                   {"Don't have an account? Sign Up"}
-                </Link>
+                    </Link>
+                <button onClick={() => addTodo()}>Add</button>
               </Grid>
             </Grid>
           </Box>
