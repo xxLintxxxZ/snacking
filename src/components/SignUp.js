@@ -9,6 +9,7 @@ import Grid from "@mui/material/Grid";
 import SetMeal from "@mui/icons-material/SetMeal";
 import Typography from "@mui/material/Typography";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { useNavigate} from "react-router";
 
 
 const theme = createTheme({
@@ -30,7 +31,7 @@ export default function SignUp() {
   // const [warn, setWarn] = useState(0)
   const [Message, setMessage] = useState()
 
-  // 
+  let navigate = useNavigate();
   // http://localhost:8000/user/signup
 
   const signup = async (username, password, email) => {
@@ -67,6 +68,7 @@ export default function SignUp() {
       signup(data.get("username"), data.get("password"), data.get("email"));
       // const queryClient = useQueryClient();
       // import { useQueryClient } from "react-query";
+    navigate("/login")
     };
   
 
