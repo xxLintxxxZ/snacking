@@ -48,7 +48,7 @@ function App() {
      <Navbar/>
       {/* <button onClick={() => login("admin", process.env.REACT_APP_NOT_SECRET_CODE)}>Login</button> */}
       <Routes>
-     <Route path ="home" element = {<Home/>} />
+     <Route path ="/" element = {<Home/>} />
      <Route path="login" element={<Login />} />
      <Route path="products" element={<Products />}>
       <Route path=":prodId" element={<Product />} />
