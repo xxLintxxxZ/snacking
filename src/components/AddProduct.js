@@ -32,7 +32,6 @@ function AddProduct() {
         navigate("/products");
     };
 
-
     return (
         
             <Box

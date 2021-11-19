@@ -1,5 +1,11 @@
 import "./App.css";
 import Home from "./components/Home";
+import { Routes, Route  } from "react-router-dom";
+import Login from "./components/Login";
+import Navbar from "./components/Navbar";
+import Products from "./components/Products";
+import AddProduct from "./components/AddProduct"
+import Product from "./components/Product";
 
 function App() {
   // const [token, setToken] = useState('')
@@ -39,11 +45,26 @@ function App() {
 
   return (
     <div className="App">
-    
+     <Navbar/>
       {/* <button onClick={() => login("admin", process.env.REACT_APP_NOT_SECRET_CODE)}>Login</button> */}
- 
-      <Home/>
-     
+      <Routes>
+     <Route path ="home" element = {<Home/>} />
+     <Route path="login" element={<Login />} />
+     <Route path="products" element={<Products />}>
+      <Route path=":prodId" element={<Product />} />
+      </Route>
+     <Route path= "addproduct" element = {<AddProduct/>}/>
+     {/* <Route
+     path="*"
+     element={
+       <main style={{ padding: "1rem" }}>
+         <p>There's nothing here!</p>
+       </main>
+     }
+   >
+   </Route> */}
+   </Routes>
+   
     </div>
   );
 }

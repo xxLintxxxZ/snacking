@@ -1,7 +1,7 @@
 
 // import { useQuery, useQueryClient } from "react-query";
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
@@ -10,6 +10,7 @@ import CardContent from "@mui/material/CardContent";
 import { Typography } from "@mui/material";
 import { Button } from "@mui/material";
 import { Container } from "@mui/material";
+
 
 function Products() {
     const [prod, setProd] = useState([]);
@@ -37,6 +38,23 @@ function Products() {
     // if (status === "error") {
     //   return <span>Error</span>;
     // }
+  
+  // const del = async (item) => {
+  //   
+  //   await fetch("https://snackshop589.herokuapp.com/products/", {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //       "Authorization": "Bearer " + token
+  //     },
+  //     body,
+  //   });
+  // }
+
+  // const del (item) => {
+    
+  // }
+
   return (
       <Container sx={{ py: 6 }} fixed>
       <Grid container spacing={4}>
@@ -70,14 +88,17 @@ function Products() {
                     </Typography>
                   </CardContent>
                   <CardActions>
-                    <Link to={`/product/${item.id}`} style={{ textDecoration: 'none', margin: '0 auto' }}>
+                    <Link to={`/products/${item.prodname}`} style={{ textDecoration: 'none', margin: '0 auto' }}>
                       <Button size="small">View</Button></Link>
+                    {/* <Button onClick={() => del({item.id}}}>${item.id} Delete</Button> */}
                   </CardActions>
                 </Card>
               </Grid>
             ))}
       </Grid>
-      </Container>
+      <Outlet />
+    </Container>
+    
     );
   }
   
