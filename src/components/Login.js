@@ -28,23 +28,31 @@ const theme = createTheme({
 export default function Login() {
   const [show, setShow] = useState(true);
   const [token, setToken] = useState("");
+  const [message, setMessage] = useState("");
 
   const login = async (username, password) => {
-    const response = await fetch(
-      "https://snackshop589.herokuapp.com/api/token/",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          username,
-          password,
-        }),
-      }
-    );
-    const data = await response.json();
-    setToken(data.access);
+    try {
+      const response = await fetch(
+        "https://snackshop589.herokuapp.com/api/token/",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            username,
+            password,
+          }),
+        }
+      );
+      const data = await response.json();
+      setMessage(response.statusText);
+      setToken(data.access);
+      alert(message)
+      // console.log(message)
+    } catch (error) {
+      setMessage(error.message);
+    }
   };
 
   const addTodo = async () => {
@@ -126,7 +134,7 @@ export default function Login() {
               </Grid>
             </Grid>
           </Box>
-          <button disabled onClick={() => addTodo()}>toggle</button>
+          <button disabled onClick={() => addTodo()}>toggle {message } </button>
           <div style={{ display: show ? "block" : "none" }}>hello</div>
         </Box>
       </Container>
