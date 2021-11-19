@@ -44,7 +44,8 @@ function Products() {
     await fetch("https://snackshop589.herokuapp.com/products/" + a, {
       method: "DELETE",
     }).then((res) => res.text())
-    .then(res => console.log(res)); // or res.json()
+      .then(res => console.log(res));
+     // or res.json()
   };
 
 

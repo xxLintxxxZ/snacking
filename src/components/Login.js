@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Avatar from "@mui/material/Avatar";
 import { Button } from "@mui/material";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -10,10 +10,10 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { useNavigate } from "react-router";
 
 const theme = createTheme({
   palette: {
-    type: "dark",
     primary: {
       main: "#3f51b5",
     },
@@ -29,6 +29,10 @@ export default function Login() {
   const [show, setShow] = useState(true);
   const [tokenMsg, setToken] = useState("");
   const [message, setMessage] = useState("");
+  const [check, setCheck] = useState("");
+
+  let navigate = useNavigate();
+
 
   const login = async (username, password) => {
     try {
@@ -44,42 +48,41 @@ export default function Login() {
             password,
           }),
         }
-      );
+      )
       const data = await response.json();
       setMessage(response.statusText);
-      // console.log(data)
+      console.log(response.ok)
       alert(message)
       setToken(data.detail)
+      setCheck(response.ok)
     } catch (error) {
       setMessage(error.message);
     }
   };
 
-  // const addTodo = async () => {
-  //   const body = JSON.stringify({
-  //     subject: "Another",
-  //     details: "New todo",
-  //   });
+ 
+    useEffect(() => {
+      if (check === true) {
+        navigate("/")
+      }
+    });
+  
+  const routing = () => {
+    if (check === true)
+      navigate ("/")
+  }
 
-  //   await fetch("https://snackshop589.herokuapp.com/todos/", {
-  //     method: "POST",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //       Authorization: "Bearer " + token,
-  //     },
-  //     body,
-  //   });
-  // };
-
+  
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     console.log(data.get("username"));
-    //   console.log(data.get('password'));
     login(data.get("username"), data.get("password"));
+    routing()
     // const queryClient = useQueryClient();
     // import { useQueryClient } from "react-query";
   };
+
   return (
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
@@ -123,6 +126,7 @@ export default function Login() {
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
               onClick={() => setShow((a) => !a)}
+              
             >
               Sign In
             </Button>

@@ -37,6 +37,7 @@ export default function SignUp() {
     try {
       const response = await fetch(
         "https://snackshop589.herokuapp.com/user/signup/",
+        // "http://localhost:8000/user/signup/",
         {
           method: "POST",
           headers: {
