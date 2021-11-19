@@ -9,12 +9,12 @@ import CardContent from "@mui/material/CardContent";
 import { Typography } from "@mui/material";
 import { Button } from "@mui/material";
 import { Container } from "@mui/material";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 
 function Products() {
   const [prod, setProd] = useState([]);
   //  const [status, setStatus] = useState(null);
-  let navigate = useNavigate();
+  // let navigate = useNavigate();
   // const queryClient = useQueryClient();
   // const { status, data } = useQuery("prod", fetchTodo);
 
