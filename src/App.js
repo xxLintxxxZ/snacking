@@ -6,42 +6,10 @@ import Navbar from "./components/Navbar";
 import Products from "./components/Products";
 import AddProduct from "./components/AddProduct"
 import Product from "./components/Product";
+import SignUp from "./components/SignUp";
 
 function App() {
-  // const [token, setToken] = useState('')
-  // const queryClient = useQueryClient();
-  // import { useQueryClient } from "react-query";
-  // const login = async (username, password) => {
-  //   const response = await fetch("https://snackshop589.herokuapp.com/api/token/", {
-  //     method: "POST",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //     body: JSON.stringify({
-  //       username,
-  //       password,
-  //     }),
-  //   });
-
-  //   const data = await response.json();
-  //   console.log(data)
-  //   setToken(data.access);
-  // };
-
-  // const addTodo = async () => {
-  //   const body = JSON.stringify({
-  //     subject: "Another", details: "New todo"
-  //   });
-
-  //   await fetch("https://snackshop589.herokuapp.com/todos/", {
-  //     method: "POST",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //       "Authorization": "Bearer " + token
-  //     },
-  //     body,
-  //   });
-  // }
+ 
 
   return (
     <div className="App">
@@ -53,7 +21,8 @@ function App() {
         <Route path="products" element={<Products />} />
          {/* Remove nested route first nested the UI will be nested too. */}
       <Route path="products/:prodId" element={<Product />} />
-     <Route path= "addproduct" element = {<AddProduct/>}/>
+        <Route path="addproduct" element={<AddProduct />} />
+        <Route path="signup" element={<SignUp />} />
      {/* <Route
      path="*"
      element={

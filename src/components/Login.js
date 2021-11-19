@@ -47,11 +47,9 @@ export default function Login() {
       );
       const data = await response.json();
       setMessage(response.statusText);
-      // console.log(data.access);
-      
+      // console.log(data)
       alert(message)
       setToken(data.detail)
-      // console.log(message)
     } catch (error) {
       setMessage(error.message);
     }
@@ -130,7 +128,7 @@ export default function Login() {
             </Button>
             <Grid container>
               <Grid item>
-                <Link component={RouterLink} to="/SignUp" variant="body2">
+                <Link component={RouterLink} to="/signup" variant="body2">
                   {"Don't have an account? Sign Up"}
                 </Link>
               </Grid>
