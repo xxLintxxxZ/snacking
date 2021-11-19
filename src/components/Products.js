@@ -88,7 +88,7 @@ function Products() {
                     </Typography>
                   </CardContent>
                   <CardActions>
-                    <Link to={`/products/${item.prodname}`} style={{ textDecoration: 'none', margin: '0 auto' }}>
+                    <Link to={`/products/${item.id}`} style={{ textDecoration: 'none', margin: '0 auto' }}>
                       <Button size="small">View</Button></Link>
                     {/* <Button onClick={() => del({item.id}}}>${item.id} Delete</Button> */}
                   </CardActions>

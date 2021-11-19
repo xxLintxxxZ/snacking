@@ -50,9 +50,9 @@ function App() {
       <Routes>
      <Route path ="/" element = {<Home/>} />
      <Route path="login" element={<Login />} />
-     <Route path="products" element={<Products />}>
-      <Route path=":prodId" element={<Product />} />
-      </Route>
+        <Route path="products" element={<Products />} />
+         {/* Remove nested route first nested the UI will be nested too. */}
+      <Route path="products/:prodId" element={<Product />} />
      <Route path= "addproduct" element = {<AddProduct/>}/>
      {/* <Route
      path="*"
