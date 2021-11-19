@@ -14,6 +14,7 @@ import { Container } from "@mui/material";
 
 function Products() {
     const [prod, setProd] = useState([]);
+  //  const [status, setStatus] = useState(null);
   
     // const queryClient = useQueryClient();
     // const { status, data } = useQuery("prod", fetchTodo);
@@ -22,6 +23,7 @@ function Products() {
   
     useEffect(() => {
       const fetchTodo = async () => {
+     
         const response = await fetch("https://snackshop589.herokuapp.com/products/");
         const prod = await response.json();
         setProd(prod)
@@ -39,21 +41,14 @@ function Products() {
     //   return <span>Error</span>;
     // }
   
-  // const del = async (item) => {
-  //   
-  //   await fetch("https://snackshop589.herokuapp.com/products/", {
-  //     method: "POST",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //       "Authorization": "Bearer " + token
-  //     },
-  //     body,
-  //   });
-  // }
 
-  // const del (item) => {
-    
-  // }
+  const del = async (a) => {
+      await fetch('https://snackshop589.herokuapp.com/products/' + a, {
+        method: 'DELETE',
+      })
+      .then(res => res.text()) // or res.json()
+      .then(res => console.log(res))   
+}
 
   return (
       <Container sx={{ py: 6 }} fixed>
@@ -90,7 +85,7 @@ function Products() {
                   <CardActions>
                     <Link to={`/products/${item.id}`} style={{ textDecoration: 'none', margin: '0 auto' }}>
                       <Button size="small">View</Button></Link>
-                    {/* <Button onClick={() => del({item.id}}}>${item.id} Delete</Button> */}
+                    <Button onClick={() => del(item.id)} size="small">Delete</Button>
                   </CardActions>
                 </Card>
               </Grid>

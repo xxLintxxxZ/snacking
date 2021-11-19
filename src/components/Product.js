@@ -9,11 +9,9 @@ import { Stack } from "@mui/material";
 
 
 export default function Product() {
-
   const { prodId } = useParams();
-  
   const [prod, setProd] = useState([]);
-  
+
   // const queryClient = useQueryClient();
   // const { status, data } = useQuery("prod", fetchTodo);
 
@@ -27,7 +25,7 @@ export default function Product() {
     };
 
     fetchTodo();
-  }, )
+  })
 
   return (<div><h2>Product: {prodId}</h2>
        <Box

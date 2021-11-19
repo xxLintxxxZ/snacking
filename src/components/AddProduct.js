@@ -7,7 +7,8 @@ import { useNavigate } from "react-router-dom";
 function AddProduct() {
 
     // http://localhost:8000/products/
-    let navigate = useNavigate();
+  let navigate = useNavigate();
+  
     const add = async (prodname, quantity, price) => {
          await fetch("https://snackshop589.herokuapp.com/products/", {
             method: "POST",
