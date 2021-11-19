@@ -27,7 +27,7 @@ const theme = createTheme({
 
 export default function Login() {
   const [show, setShow] = useState(true);
-  const [token, setToken] = useState("");
+  const [tokenMsg, setToken] = useState("");
   const [message, setMessage] = useState("");
 
   const login = async (username, password) => {
@@ -47,29 +47,31 @@ export default function Login() {
       );
       const data = await response.json();
       setMessage(response.statusText);
-      setToken(data.access);
+      // console.log(data.access);
+      
       alert(message)
+      setToken(data.detail)
       // console.log(message)
     } catch (error) {
       setMessage(error.message);
     }
   };
 
-  const addTodo = async () => {
-    const body = JSON.stringify({
-      subject: "Another",
-      details: "New todo",
-    });
+  // const addTodo = async () => {
+  //   const body = JSON.stringify({
+  //     subject: "Another",
+  //     details: "New todo",
+  //   });
 
-    await fetch("https://snackshop589.herokuapp.com/todos/", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + token,
-      },
-      body,
-    });
-  };
+  //   await fetch("https://snackshop589.herokuapp.com/todos/", {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //       Authorization: "Bearer " + token,
+  //     },
+  //     body,
+  //   });
+  // };
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -134,7 +136,7 @@ export default function Login() {
               </Grid>
             </Grid>
           </Box>
-          <button disabled onClick={() => addTodo()}>toggle {message } </button>
+          <button disabled > {tokenMsg} </button>
           <div style={{ display: show ? "block" : "none" }}>hello</div>
         </Box>
       </Container>
