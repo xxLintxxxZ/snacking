@@ -13,6 +13,7 @@ import { Container } from "@mui/material";
 
 function Products() {
   const [prod, setProd] = useState([]);
+  const [loading, setLoading] = useState(true);
   //  const [status, setStatus] = useState(null);
   // let navigate = useNavigate();
   // const queryClient = useQueryClient();
@@ -26,6 +27,7 @@ function Products() {
       const response = await fetch("https://snackshop589.herokuapp.com/products/");
       const prod = await response.json();
       setProd(prod);
+      setLoading(false)
     };
 
     fetchTodo();
@@ -51,6 +53,7 @@ function Products() {
 
   return (
     <Container sx={{ py: 6 }} fixed>
+       <div>{loading ? "loading..." : null}</div>
       <Grid container spacing={4}>
         {prod.map((item, key) => (
           <Grid item key={key} xs={12} sm={6} md={4}>
