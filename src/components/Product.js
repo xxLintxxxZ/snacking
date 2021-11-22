@@ -56,7 +56,7 @@ export default function Product() {
     // import { useQueryClient } from "react-query";
     setTimeout(function () {
       navigate("/products");
-    }, 2000);
+    }, 3000);
   };
 
   return (

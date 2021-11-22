@@ -9,16 +9,17 @@ import CardContent from "@mui/material/CardContent";
 import { Typography } from "@mui/material";
 import { Button } from "@mui/material";
 import { Container } from "@mui/material";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function Products() {
   const [prod, setProd] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [refresh, setRefresh] = useState(false)
   //  const [status, setStatus] = useState(null);
-  // let navigate = useNavigate();
+  let navigate = useNavigate();
   // const queryClient = useQueryClient();
   // const { status, data } = useQuery("prod", fetchTodo);
-
+  
   // https://snackshop589.herokuapp.com/products/
   // http://localhost:8000/products/
 
@@ -33,6 +34,7 @@ function Products() {
     fetchTodo();
   }, []);
 
+console.log(prod)
   //if i fetch ("http://localhost:8000/todo/"). typo in address u see the below status;
   // if (status === "loading") {
   //   return <span>Loading...</span>;
@@ -42,14 +44,31 @@ function Products() {
   //   return <span>Error</span>;
   // }
 
-  const del = async (a) => {
+  const del = async (a,b) => {
     await fetch("https://snackshop589.herokuapp.com/products/" + a, {
       method: "DELETE",
     }).then((res) => res.text())
       .then(res => console.log(res));
-     // or res.json()
+    
+    prod.splice(b,1)
+    setRefresh(true)
+    //  // or res.json()
+    setTimeout(function () {
+      navigate("/products");
+    }, 5000);
+    setRefresh(false)
+    return refresh
   };
 
+  // if (refresh === true) {
+  //   // setTimeout(function () {
+  //   //   navigate("/products");
+  //   // }, 5000);
+  //   navigate("/products")
+  //   if (loading === false) {
+  //     setRefresh(false)
+  //   }
+  // }
 
   return (
     <Container sx={{ py: 6 }} fixed>
@@ -73,9 +92,13 @@ function Products() {
                     image={item.img}
                     alt="random"
                   /> */}
+              
               <CardContent sx={{ flexGrow: 1 }}>
                 <Typography gutterBottom sx={{ fontWeight: "bold" }}>
                   Name : {item.prodname}
+                </Typography>
+                <Typography gutterBottom sx={{ fontWeight: "bold" }}>
+                  Index : {key}
                 </Typography>
                 <Typography>Quantity {item.quantity}</Typography>
                 <Typography>Price : {item.price}</Typography>
@@ -87,7 +110,7 @@ function Products() {
                 >
                   <Button size="small">View</Button>
                 </Link>
-                <Button onClick={() => del(item.id)} size="small">
+                <Button onClick={() => del(item.id, key)} size="small">
                   Delete
                 </Button>
                 {/* <Link
