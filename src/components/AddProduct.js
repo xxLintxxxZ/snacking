@@ -39,7 +39,8 @@ function AddProduct() {
         const data = new FormData(event.currentTarget);
         console.log(data.get('prodname'));
         //   console.log(data.get('password'));
-        add(data.get('prodname'), data.get('quantity'), data.get('price'))
+      add(data.get('prodname'), data.get('quantity'), data.get('price'))
+     
         // const queryClient = useQueryClient();
         // import { useQueryClient } from "react-query";
         
@@ -61,7 +62,8 @@ function AddProduct() {
                   required
                   fullWidth
                   label="Product"
-                  name="prodname"
+                   name="prodname"
+                   inputProps={{ maxLength:150}}
                   autoFocus
                 />
                 <TextField
@@ -70,6 +72,7 @@ function AddProduct() {
                   fullWidth
                   name="quantity"
                   label="Quantity"
+
                 />
                   <TextField
                   margin="normal"

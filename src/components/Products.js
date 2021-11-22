@@ -15,13 +15,13 @@ import { useNavigate } from "react-router-dom";
 function Products() {
   const [prod, setProd] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [refresh, setRefresh] = useState(false)
+  const [refresh, setRefresh] = useState(false);
   //  const [status, setStatus] = useState(null);
   let navigate = useNavigate();
   // const queryClient = useQueryClient();
   // const { status, data } = useQuery("prod", fetchTodo);
-  const URL = process.env.REACT_APP_URL
-  
+  const URL = process.env.REACT_APP_URL;
+
   // http://localhost:8000/products/
   // process.env.REACT_URL
   // console.log(process.env.REACT_APP_URL + "/products")
@@ -31,13 +31,13 @@ function Products() {
       const response = await fetch(URL + "/products");
       const prod = await response.json();
       setProd(prod);
-      setLoading(false)
+      setLoading(false);
     };
 
     fetchTodo();
   }, [URL]);
 
-console.log(prod)
+  console.log(prod);
   //if i fetch ("http://localhost:8000/todo/"). typo in address u see the below status;
   // if (status === "loading") {
   //   return <span>Loading...</span>;
@@ -47,20 +47,21 @@ console.log(prod)
   //   return <span>Error</span>;
   // }
 
-  const del = async (a,b) => {
-    await fetch(URL +"/products/" + a, {
+  const del = async (a, b) => {
+    await fetch(URL + "/products/" + a, {
       method: "DELETE",
-    }).then((res) => res.text())
-      .then(res => console.log(res));
-    
-    prod.splice(b,1)
-    setRefresh(true)
+    })
+      .then((res) => res.text())
+      .then((res) => console.log(res));
+
+    prod.splice(b, 1);
+    setRefresh(true);
     //  // or res.json()
     setTimeout(function () {
       navigate("/products");
     }, 5000);
-    setRefresh(false)
-    return refresh
+    setRefresh(false);
+    return refresh;
   };
 
   // if (refresh === true) {
@@ -75,7 +76,7 @@ console.log(prod)
 
   return (
     <Container sx={{ py: 6 }} fixed>
-       <div>{loading ? "loading..." : null}</div>
+      <div>{loading ? "loading..." : null}</div>
       <Grid container spacing={4}>
         {prod.map((item, key) => (
           <Grid item key={key} xs={12} sm={6} md={4}>
@@ -95,7 +96,7 @@ console.log(prod)
                     image={item.img}
                     alt="random"
                   /> */}
-              
+
               <CardContent sx={{ flexGrow: 1 }}>
                 <Typography gutterBottom sx={{ fontWeight: "bold" }}>
                   Name : {item.prodname}
@@ -113,15 +114,15 @@ console.log(prod)
                 >
                   <Button size="small">View</Button>
                 </Link>
+                <Link
+                  to={`/products/buy/${item.id}`}
+                  style={{ textDecoration: "none", margin: "0 auto" }}
+                >
+                  <Button size="small">Buy</Button>
+                </Link>
                 <Button onClick={() => del(item.id, key)} size="small">
                   Delete
                 </Button>
-                {/* <Link
-                  to={`/products/edit/${item.id}`}
-                  style={{ textDecoration: "none", margin: "0 auto" }}
-                >
-                  <Button size="small">Edit</Button>
-                </Link> */}
               </CardActions>
             </Card>
           </Grid>

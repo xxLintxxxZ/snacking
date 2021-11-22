@@ -11,19 +11,20 @@ import { Button } from "@mui/material";
 import TextField from "@mui/material/TextField";
 import { useNavigate } from "react-router-dom";
 
-export default function Product() {
+export default function BuyProduct() {
   const { prodId } = useParams();
+  
   const [prod, setProd] = useState([]);
-  let navigate = useNavigate();
+    let navigate = useNavigate();
+    const [refresh, setRefresh] = useState(false);
   // const queryClient = useQueryClient();
   // const { status, data } = useQuery("prod", fetchTodo);
 
-
-  const URL = process.env.REACT_APP_URL
+  const URL = process.env.REACT_APP_URL;
 
   useEffect(() => {
     const fetchProd = async () => {
-      const response = await fetch(URL +`/products/${prodId}/`);
+      const response = await fetch(URL + `/products/${prodId}/`);
       const prod = await response.json();
       setProd(prod);
     };
@@ -31,37 +32,38 @@ export default function Product() {
     fetchProd();
   }, [URL, prodId]);
 
-
-
   //* ==== Edit product =====
 
   const add = async (prodname, quantity, price) => {
-    await fetch(URL +`/products/${prodId}/`, {
+    await fetch(URL + `/products/${prodId}/`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        prodname,
-        quantity,
-        price,
+        prodname, quantity, price
       }),
     });
   };
 
+  //? To have a field for sales?
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log(data.get("prodname"));
-    //   console.log(data.get('password'));
-    const newQty = prod.quantity - data.get("quantity")
-    console.log(newQty)
-    add(data.get("prodname"), data.get("quantity"), data.get("price"));
-    // const queryClient = useQueryClient();
-    // import { useQueryClient } from "react-query";
-    setTimeout(function () {
-      navigate("/products");
-    }, 3000);
+    const qty = prod.quantity - data.get("quantity");
+    console.log(qty);
+    if (qty < 0) alert("You cannot buy more than the stock available!");
+    else {
+        add(prod.prodname, qty, prod.price)
+        setRefresh(true);
+       
+        setTimeout(function () {
+          navigate("/products");
+        }, 2000);
+        setRefresh(false);
+        return refresh;
+    }
   };
 
   return (
@@ -106,15 +108,14 @@ export default function Product() {
                 alignItems: "center",
               }}
             >
-              <Box component="form" name = "PostName" onSubmit={handleSubmit} sx={{ mt: 1 }}>
+              <Box component="form" onSubmit={handleSubmit} sx={{ mt: 1 }}>
                 <TextField
                   margin="normal"
                   fullWidth
+                  disabled
+                  label="Product"
                   name="prodname"
-                  label="Name"
-                  onChange = "PostName.submit()"
-                  // defaultvalue={prod.prodname}
-                  placeholder = {prod.prodname}
+                  value={prod.prodname}
                   InputLabelProps={{
                     shrink: true,
                   }}
@@ -126,7 +127,7 @@ export default function Product() {
                   name="quantity"
                   label="Quantity"
                   // defaultValue={prod.quantity}
-                  placeholder= {`${prod.quantity}`}
+                  placeholder={`${prod.quantity}`}
                   InputLabelProps={{
                     shrink: true,
                   }}
@@ -134,11 +135,12 @@ export default function Product() {
                 <TextField
                   margin="normal"
                   required
+                  disabled
                   fullWidth
                   name="price"
                   label="Price"
                   // defaultValue={prod.price}
-                  placeholder = {`${prod.price}`}
+                  value={prod.price}
                   InputLabelProps={{
                     shrink: true,
                   }}
@@ -149,7 +151,7 @@ export default function Product() {
                   variant="contained"
                   sx={{ mt: 3, mb: 2 }}
                 >
-                  Edit this product
+                  Buy this product
                 </Button>
               </Box>
             </Box>
