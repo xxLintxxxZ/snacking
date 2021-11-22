@@ -120,7 +120,7 @@ export default function Product() {
                   name="quantity"
                   label="Quantity"
                   // defaultValue={prod.quantity}
-                  placeholder = {prod.quantity}
+                  placeholder= {`${prod.quantity}`}
                   InputLabelProps={{
                     shrink: true,
                   }}
@@ -132,7 +132,7 @@ export default function Product() {
                   name="price"
                   label="Price"
                   // defaultValue={prod.price}
-                  placeholder = {prod.price}
+                  placeholder = {`${prod.price}`}
                   InputLabelProps={{
                     shrink: true,
                   }}

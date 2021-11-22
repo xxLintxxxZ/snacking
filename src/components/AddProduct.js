@@ -3,25 +3,37 @@ import { Button } from "@mui/material";
 import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 function AddProduct() {
 
     // http://localhost:8000/products/
   let navigate = useNavigate();
-  
-    const add = async (prodname, quantity, price) => {
-         await fetch("https://snackshop589.herokuapp.com/products/", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                prodname, quantity, price
-            }),
-            }    
-        );
-    }
+  const [prod, setProd] = useState([]);
 
+
+
+    const add = async (prodname, quantity, price) => {
+      await fetch("https://snackshop589.herokuapp.com/products/", {
+         method: "POST",
+         headers: {
+             "Content-Type": "application/json",
+         },
+         body: JSON.stringify({
+             prodname, quantity, price
+         }),
+         }    
+      );
+   setProd(JSON.stringify({
+    prodname, quantity, price
+   }))
+      // console.log(prod)
+      setProd(prod);
+      setTimeout(function () {
+        navigate("/products");
+      }, 1000);
+    }
+  
     const handleSubmit = (event) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
@@ -30,7 +42,7 @@ function AddProduct() {
         add(data.get('prodname'), data.get('quantity'), data.get('price'))
         // const queryClient = useQueryClient();
         // import { useQueryClient } from "react-query";
-        navigate("/products");
+        
     };
 
     return (
