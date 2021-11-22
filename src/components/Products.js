@@ -90,6 +90,12 @@ function Products() {
                 <Button onClick={() => del(item.id)} size="small">
                   Delete
                 </Button>
+                {/* <Link
+                  to={`/products/edit/${item.id}`}
+                  style={{ textDecoration: "none", margin: "0 auto" }}
+                >
+                  <Button size="small">Edit</Button>
+                </Link> */}
               </CardActions>
             </Card>
           </Grid>

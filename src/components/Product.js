@@ -6,48 +6,76 @@ import { Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import { Box } from "@mui/system";
 import { Stack } from "@mui/material";
-
+import React from "react";
+import { Button } from "@mui/material";
+import TextField from "@mui/material/TextField";
+import { useNavigate } from "react-router-dom";
 
 export default function Product() {
   const { prodId } = useParams();
   const [prod, setProd] = useState([]);
-
+  let navigate = useNavigate();
   // const queryClient = useQueryClient();
   // const { status, data } = useQuery("prod", fetchTodo);
 
   // https://snackshop589.herokuapp.com/products/
 
   useEffect(() => {
-    const fetchTodo = async () => {
-      const response = await fetch("https://snackshop589.herokuapp.com/products/"+ prodId);
+    const fetchProd = async () => {
+      const response = await fetch(
+        `https://snackshop589.herokuapp.com/products/${prodId}`
+      );
       const prod = await response.json();
-      setProd(prod)
+      setProd(prod);
     };
 
-    fetchTodo();
-  })
+    fetchProd();
+  });
 
-  return (<div><h2>Product: {prodId}</h2>
-       <Box
+  const add = async (prodname, quantity, price) => {
+    await fetch(`https://snackshop589.herokuapp.com/products/${prodId}/`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        prodname,
+        quantity,
+        price,
+      }),
+    });
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const data = new FormData(event.currentTarget);
+    console.log(data.get("prodname"));
+    //   console.log(data.get('password'));
+    add(data.get("prodname"), data.get("quantity"), data.get("price"));
+    // const queryClient = useQueryClient();
+    // import { useQueryClient } from "react-query";
+    // window.location.reload(true);  //reload the page to show the data
+    // setTimeout(navigate("/products"),2000);
+  };
+
+  return (
+    <div>
+      <h2>Product: {prodId}</h2>
+      <Box
         sx={{
           bgcolor: "background.paper",
           pt: 8,
           pl: 6,
         }}
       >
-        <Stack
-          sx={{ pt: 2 }}
-          direction="row"
-          spacing={2}
-          justifyContent="left"
-        >
-      <Card
-                  sx={{
-                    maxWidth: 400,
-                    maxHeight: 600 
-                  }}
-                >
-                  {/* <CardMedia
+        <Stack sx={{ pt: 2 }} direction="row" spacing={2} justifyContent="left">
+          <Card
+            sx={{
+              maxWidth: 400,
+              maxHeight: 600,
+            }}
+          >
+            {/* <CardMedia
                     component="img"
                     sx={{
                       height: 150,
@@ -57,19 +85,70 @@ export default function Product() {
                     image={item.img}
                     alt="random"
                   /> */}
-                  <CardContent sx={{ flexGrow: 1  }}>
-                    <Typography gutterBottom sx={{fontWeight: 'bold'}}>
-                      Name : {prod.prodname}
-                    </Typography>
-                    <Typography >
-                     Quantity {prod.quantity}
-                    </Typography>
-                    <Typography >
-                      Price : {prod.price}
-                    </Typography>
-                  </CardContent>
-        </Card>
+            <CardContent sx={{ flexGrow: 1 }}>
+              <Typography gutterBottom sx={{ fontWeight: "bold" }}>
+                Name : {prod.prodname}
+              </Typography>
+              <Typography>Quantity {prod.quantity}</Typography>
+              <Typography>Price : {prod.price}</Typography>
+            </CardContent>
+            <Box
+              sx={{
+                marginTop: 8,
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+            >
+              <Box component="form" onSubmit={handleSubmit} sx={{ mt: 1 }}>
+                <TextField
+                  margin="normal"
+                  fullWidth
+                  label="Product"
+                  name="prodname"
+                  // defaultvalue={prod.prodname}
+                  placeholder = {prod.prodname}
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
+                />
+                <TextField
+                  margin="normal"
+                  required
+                  fullWidth
+                  name="quantity"
+                  label="Quantity"
+                  // defaultValue={prod.quantity}
+                  placeholder = {prod.quantity}
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
+                />
+                <TextField
+                  margin="normal"
+                  required
+                  fullWidth
+                  name="price"
+                  label="Price"
+                  // defaultValue={prod.price}
+                  placeholder = {prod.price}
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
+                />
+                <Button
+                  type="submit"
+                  fullWidth
+                  variant="contained"
+                  sx={{ mt: 3, mb: 2 }}
+                >
+                  Edit this product
+                </Button>
+              </Box>
+            </Box>
+          </Card>
         </Stack>
       </Box>
-    </div>);
-    }
+    </div>
+  );
+}
