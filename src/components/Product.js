@@ -9,12 +9,12 @@ import { Stack } from "@mui/material";
 import React from "react";
 import { Button } from "@mui/material";
 import TextField from "@mui/material/TextField";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 
 export default function Product() {
   const { prodId } = useParams();
   const [prod, setProd] = useState([]);
-  let navigate = useNavigate();
+  // let navigate = useNavigate();
   // const queryClient = useQueryClient();
   // const { status, data } = useQuery("prod", fetchTodo);
 
