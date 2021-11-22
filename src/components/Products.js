@@ -5,7 +5,7 @@ import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
-// import CardMedia from "@mui/material/CardMedia";
+import CardMedia from "@mui/material/CardMedia";
 import { Typography } from "@mui/material";
 import { Button } from "@mui/material";
 import { Container } from "@mui/material";
@@ -86,16 +86,16 @@ function Products() {
                 maxHeight: 600,
               }}
             >
-              {/* <CardMedia
+              <CardMedia
                     component="img"
                     sx={{
-                      height: 150,
-                      maxHeight: 150
-                      
+                      height: 200,
+                      width: '100%',
+                      maxHeight: 200
                     }}
-                    image={item.img}
+                    image={item.image}
                     alt="random"
-                  /> */}
+                  />
 
               <CardContent sx={{ flexGrow: 1 }}>
                 <Typography gutterBottom sx={{ fontWeight: "bold" }}>
