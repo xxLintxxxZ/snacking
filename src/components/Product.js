@@ -18,13 +18,12 @@ export default function Product() {
   // const queryClient = useQueryClient();
   // const { status, data } = useQuery("prod", fetchTodo);
 
-  // https://snackshop589.herokuapp.com/products/
+
+  const URL = process.env.REACT_APP_URL
 
   useEffect(() => {
     const fetchProd = async () => {
-      const response = await fetch(
-        `https://snackshop589.herokuapp.com/products/${prodId}`
-      );
+      const response = await fetch(URL +`/products/${prodId}/`);
       const prod = await response.json();
       setProd(prod);
     };
@@ -32,8 +31,10 @@ export default function Product() {
     fetchProd();
   });
 
+  //* ==== Edit product =====
+  
   const add = async (prodname, quantity, price) => {
-    await fetch(`https://snackshop589.herokuapp.com/products/${prodId}/`, {
+    await fetch(URL +`/products/${prodId}/`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

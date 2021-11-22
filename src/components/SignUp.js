@@ -30,14 +30,14 @@ export default function SignUp() {
   // let history = useHistory();
   // const [warn, setWarn] = useState(0)
   const [Message, setMessage] = useState()
-
+  const URL = process.env.REACT_APP_URL
   let navigate = useNavigate();
   // http://localhost:8000/user/signup
 
   const signup = async (username, password, email) => {
     try {
       const response = await fetch(
-        "https://snackshop589.herokuapp.com/user/signup/",
+        URL + "/user/signup/",
         // "http://localhost:8000/user/signup/",
         {
           method: "POST",

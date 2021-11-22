@@ -10,6 +10,7 @@ import { Typography } from "@mui/material";
 import { Button } from "@mui/material";
 import { Container } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+// require('dotenv').config()
 
 function Products() {
   const [prod, setProd] = useState([]);
@@ -19,20 +20,22 @@ function Products() {
   let navigate = useNavigate();
   // const queryClient = useQueryClient();
   // const { status, data } = useQuery("prod", fetchTodo);
+  const URL = process.env.REACT_APP_URL
   
-  // https://snackshop589.herokuapp.com/products/
   // http://localhost:8000/products/
+  // process.env.REACT_URL
+  // console.log(process.env.REACT_APP_URL + "/products")
 
   useEffect(() => {
     const fetchTodo = async () => {
-      const response = await fetch("https://snackshop589.herokuapp.com/products/");
+      const response = await fetch(URL + "/products");
       const prod = await response.json();
       setProd(prod);
       setLoading(false)
     };
 
     fetchTodo();
-  }, []);
+  }, [URL]);
 
 console.log(prod)
   //if i fetch ("http://localhost:8000/todo/"). typo in address u see the below status;
@@ -45,7 +48,7 @@ console.log(prod)
   // }
 
   const del = async (a,b) => {
-    await fetch("https://snackshop589.herokuapp.com/products/" + a, {
+    await fetch(URL +"/products/" + a, {
       method: "DELETE",
     }).then((res) => res.text())
       .then(res => console.log(res));

@@ -8,6 +8,7 @@ import AddProduct from "./components/AddProduct"
 import Product from "./components/Product";
 import SignUp from "./components/SignUp";
 // import EditProduct from "./components/EditProduct";
+require('dotenv').config()
 
 function App() {
  

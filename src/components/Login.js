@@ -33,11 +33,12 @@ export default function Login() {
 
   let navigate = useNavigate();
 
+  const URL = process.env.REACT_APP_URL
 
   const login = async (username, password) => {
     try {
       const response = await fetch(
-        "https://snackshop589.herokuapp.com/api/token/",
+        URL + "/api/token/",
         {
           method: "POST",
           headers: {
