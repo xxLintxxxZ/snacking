@@ -97,9 +97,9 @@ console.log(prod)
                 <Typography gutterBottom sx={{ fontWeight: "bold" }}>
                   Name : {item.prodname}
                 </Typography>
-                <Typography gutterBottom sx={{ fontWeight: "bold" }}>
+                {/* <Typography gutterBottom sx={{ fontWeight: "bold" }}>
                   Index : {key}
-                </Typography>
+                </Typography> */}
                 <Typography>Quantity {item.quantity}</Typography>
                 <Typography>Price : {item.price}</Typography>
               </CardContent>
