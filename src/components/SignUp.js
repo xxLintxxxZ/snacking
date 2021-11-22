@@ -64,7 +64,7 @@ export default function SignUp() {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     // eslint-disable-next-line no-console
-      //   console.log(data.get('password'));
+     
       signup(data.get("username"), data.get("password"), data.get("email"));
       // const queryClient = useQueryClient();
       // import { useQueryClient } from "react-query";
