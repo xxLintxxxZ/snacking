@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import Avatar from "@mui/material/Avatar";
 import { Button } from "@mui/material";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
@@ -11,26 +10,48 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useNavigate } from "react-router";
+import withStyles from "@material-ui/core/styles/withStyles";
+import PropTypes from "prop-types";
+// import FormControl from "@material-ui/core/FormControl";
+import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 
-const theme = createTheme({
+
+const styles = (theme) => ({
   palette: {
     primary: {
       main: "#3f51b5",
     },
-
     text: {
       primary: "#6666d8",
       secondary: "#8c51ec",
     },
   },
+  LockOutlinedIcon: {
+    margin: theme.spacing.unit,
+    color: theme.palette.secondary.main,
+  },
 });
 
-export default function Login() {
+const theme = createTheme({
+  palette: {
+    type: 'dark',
+    primary: {
+      main: '#3f51b5',
+    },
+  
+    text: {
+      primary: '#6666d8',
+      secondary: '#8c51ec',
+    },
+  },
+});
+
+function Login(props) {
   const [show, setShow] = useState(true);
   const [tokenMsg, setToken] = useState("");
   const [message, setMessage] = useState("");
   const [check, setCheck] = useState("");
-
+  const { classes } = props;
   let navigate = useNavigate();
 
   const URL = process.env.REACT_APP_URL
@@ -60,7 +81,6 @@ export default function Login() {
       setMessage(error.message);
     }
   };
-
  
     useEffect(() => {
       if (check === true) {
@@ -72,7 +92,6 @@ export default function Login() {
     if (check === true)
       navigate ("/")
   }
-
   
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -96,11 +115,14 @@ export default function Login() {
             alignItems: "center",
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}></Avatar>
+          <LockOutlinedIcon className={classes.LockOutlinedIcon}>
+          </LockOutlinedIcon>
+          {/* <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}> */}
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
           <Box component="form" onSubmit={handleSubmit} sx={{ mt: 1 }}>
+           
             <TextField
               margin="normal"
               required
@@ -127,7 +149,6 @@ export default function Login() {
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
               onClick={() => setShow((a) => !a)}
-              
             >
               Sign In
             </Button>
@@ -138,11 +159,17 @@ export default function Login() {
                 </Link>
               </Grid>
             </Grid>
-          </Box>
+           </Box> 
           <button disabled > {tokenMsg} </button>
           <div style={{ display: show ? "block" : "none" }}>hello</div>
-        </Box>
-      </Container>
+          </Box>
+       </Container> 
     </ThemeProvider>
   );
 }
+
+Login.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
+
+export default withStyles(styles)(Login);

@@ -9,6 +9,8 @@ import Product from "./components/Product";
 import SignUp from "./components/SignUp";
 // import EditProduct from "./components/EditProduct";
 import BuyProduct from "./components/BuyProduct"
+import SignIn from "./components/Login2"
+
 require('dotenv').config()
 
 function App() {
@@ -20,7 +22,7 @@ function App() {
       {/* <button onClick={() => login("admin", process.env.REACT_APP_NOT_SECRET_CODE)}>Login</button> */}
       <Routes>
      <Route path ="/" element = {<Home/>} />
-     <Route path="login" element={<Login />} />
+     <Route path="login" element={<Login/>} />
         <Route path="products" element={<Products />} />
          {/* Remove nested route first nested the UI will be nested too. */}
         <Route path="products/:prodId" element={<Product />} />

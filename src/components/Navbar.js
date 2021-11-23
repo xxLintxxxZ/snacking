@@ -12,17 +12,23 @@ import { IconButton } from "@mui/material";
 
 const theme = createTheme({
   palette: {
-    type: "dark",
     primary: {
-      main: "#8897e8",
+      main: '#8897e8',
+      dark: '#7b2121',
     },
-
+    secondary: {
+      main: '#f48fb1',
+    },
+    background: {
+      paper: '#cfd8e0',
+    },
     text: {
       primary: "#6666d8",
       secondary: "#8c51ec",
     },
   },
 });
+
 export default function NavBar() {
   return (
     <ThemeProvider theme={theme}>

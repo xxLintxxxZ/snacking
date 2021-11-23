@@ -14,29 +14,29 @@ import { useNavigate } from "react-router-dom";
 export default function Product() {
   const { prodId } = useParams();
   const [prod, setProd] = useState([]);
+  const [loading, setLoading] = useState(true);
   let navigate = useNavigate();
   // const queryClient = useQueryClient();
   // const { status, data } = useQuery("prod", fetchTodo);
 
-
-  const URL = process.env.REACT_APP_URL
+  const URL = process.env.REACT_APP_URL;
 
   useEffect(() => {
     const fetchProd = async () => {
-      const response = await fetch(URL +`/products/${prodId}/`);
+      const response = await fetch(URL + `/products/${prodId}/`);
       const prod = await response.json();
       setProd(prod);
+      console.log(typeof(prod.quantity))
+      setLoading(false);
     };
 
     fetchProd();
   }, [URL, prodId]);
 
-
-
   //* ==== Edit product =====
 
   const add = async (prodname, quantity, price) => {
-    await fetch(URL +`/products/${prodId}/`, {
+    await fetch(URL + `/products/${prodId}/`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -54,8 +54,8 @@ export default function Product() {
     const data = new FormData(event.currentTarget);
     console.log(data.get("prodname"));
     //   console.log(data.get('password'));
-    const newQty = prod.quantity - data.get("quantity")
-    console.log(newQty)
+    const newQty = prod.quantity - data.get("quantity");
+    console.log(newQty);
     add(data.get("prodname"), data.get("quantity"), data.get("price"));
     // const queryClient = useQueryClient();
     // import { useQueryClient } from "react-query";
@@ -65,7 +65,7 @@ export default function Product() {
   };
 
   return (
-    <div>
+    <div> <div>{loading ? "loading..." : null}</div>
       <h2>Product: {prodId}</h2>
       <Box
         sx={{
@@ -93,10 +93,14 @@ export default function Product() {
                   /> */}
             <CardContent sx={{ flexGrow: 1 }}>
               <Typography gutterBottom sx={{ fontWeight: "bold" }}>
-                Name : {prod.prodname}
+                {prod.prodname}
               </Typography>
-              <Typography>Quantity {prod.quantity}</Typography>
-              <Typography>Price : {prod.price}</Typography>
+              {/* <div>{ loading ? `Quantity: ${prod.quantity}` : `Quantity: ${prod.quantity.toLocaleString()}`}</div> */}
+              <Typography>
+                Quantity: {prod.quantity}
+                {/* Quantity: {prod.quantity.toLocaleString()}  throwing undefined*/}
+              </Typography>
+              <Typography>Price : ${prod.price}</Typography>
             </CardContent>
             <Box
               sx={{
@@ -106,15 +110,20 @@ export default function Product() {
                 alignItems: "center",
               }}
             >
-              <Box component="form" name = "PostName" onSubmit={handleSubmit} sx={{ mt: 1 }}>
+              <Box
+                component="form"
+                name="PostName"
+                onSubmit={handleSubmit}
+                sx={{ mt: 1 }}
+              >
                 <TextField
                   margin="normal"
                   fullWidth
                   name="prodname"
                   label="Name"
-                  onChange = "PostName.submit()"
+                  onChange="PostName.submit()"
                   // defaultvalue={prod.prodname}
-                  placeholder = {prod.prodname}
+                  placeholder={prod.prodname}
                   InputLabelProps={{
                     shrink: true,
                   }}
@@ -126,7 +135,7 @@ export default function Product() {
                   name="quantity"
                   label="Quantity"
                   // defaultValue={prod.quantity}
-                  placeholder= {`${prod.quantity}`}
+                  placeholder={`${prod.quantity}`}
                   InputLabelProps={{
                     shrink: true,
                   }}
@@ -138,7 +147,7 @@ export default function Product() {
                   name="price"
                   label="Price"
                   // defaultValue={prod.price}
-                  placeholder = {`${prod.price}`}
+                  placeholder={`${prod.price}`}
                   InputLabelProps={{
                     shrink: true,
                   }}

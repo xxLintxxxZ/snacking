@@ -12,11 +12,35 @@ import { Container } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 // require('dotenv').config()
 
+
+// function commarize() {
+//   // Alter numbers larger than 1k
+//   if (this >= 1e3) {
+//     var units = ["K", "M", "B", "T"];
+    
+//     // Divide to get SI Unit engineering style numbers (1e3,1e6,1e9, etc)
+//     let unit = Math.floor(((this).toFixed(0).length - 1) / 3) * 3
+//     // Calculate the remainder
+//     var num = (this / ('1e'+unit)).toFixed(2)
+//     var unitname = units[Math.floor(unit / 3) - 1]
+    
+//     // output number remainder + unitname
+//     return num + unitname
+//   }
+  
+//   // return formatted original number
+//   return this.toLocaleString()
+// }
+// // Add method to prototype. this allows you to use this function on numbers and strings directly
+// Number.prototype.commarize = commarize
+// String.prototype.commarize = commarize
+
+
 function Products() {
   const [prod, setProd] = useState([]);
   const [loading, setLoading] = useState(true);
   const [refresh, setRefresh] = useState(false);
-  //  const [status, setStatus] = useState(null);
+
   let navigate = useNavigate();
   // const queryClient = useQueryClient();
   // const { status, data } = useQuery("prod", fetchTodo);
@@ -38,14 +62,7 @@ function Products() {
   }, [URL]);
 
   console.log(prod);
-  //if i fetch ("http://localhost:8000/todo/"). typo in address u see the below status;
-  // if (status === "loading") {
-  //   return <span>Loading...</span>;
-  // }
-
-  // if (status === "error") {
-  //   return <span>Error</span>;
-  // }
+ 
 
   const del = async (a, b) => {
     await fetch(URL + "/products/" + a, {
@@ -56,7 +73,7 @@ function Products() {
 
     prod.splice(b, 1);
     setRefresh(true);
-    //  // or res.json()
+    
     setTimeout(function () {
       navigate("/products");
     }, 5000);
@@ -99,13 +116,13 @@ function Products() {
 
               <CardContent sx={{ flexGrow: 1 }}>
                 <Typography gutterBottom sx={{ fontWeight: "bold" }}>
-                  Name : {item.prodname}
+                  {item.prodname}
                 </Typography>
                 {/* <Typography gutterBottom sx={{ fontWeight: "bold" }}>
                   Index : {key}
                 </Typography> */}
-                <Typography>Quantity {item.quantity}</Typography>
-                <Typography>Price : {item.price}</Typography>
+                <Typography>Quantity: {item.quantity.toLocaleString()}</Typography>
+                <Typography>Price : ${item.price}</Typography>
               </CardContent>
               <CardActions>
                 <Link

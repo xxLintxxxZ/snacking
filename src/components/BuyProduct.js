@@ -95,10 +95,13 @@ export default function BuyProduct() {
                   /> */}
             <CardContent sx={{ flexGrow: 1 }}>
               <Typography gutterBottom sx={{ fontWeight: "bold" }}>
-                Name : {prod.prodname}
+                {prod.prodname}
               </Typography>
-              <Typography>Quantity {prod.quantity}</Typography>
-              <Typography>Price : {prod.price}</Typography>
+              <Typography>
+                {/* Quantity: {prod.quantity.toLocaleString(undefined, { maximumFractionDigits: 2 })} */}
+                Quantity: {prod.quantity}
+              </Typography>
+              <Typography>Price : ${prod.price}</Typography>
             </CardContent>
             <Box
               sx={{

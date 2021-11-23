@@ -40,10 +40,8 @@ function AddProduct() {
         console.log(data.get('prodname'));
         //   console.log(data.get('password'));
       add(data.get('prodname'), data.get('quantity'), data.get('price'))
-     
         // const queryClient = useQueryClient();
         // import { useQueryClient } from "react-query";
-        
     };
 
     return (
