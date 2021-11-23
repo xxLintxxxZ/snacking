@@ -11,7 +11,7 @@ import { Button } from "@mui/material";
 import { Container } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 // require('dotenv').config()
-
+import { CircularProgress } from "@mui/material";
 
 // function commarize() {
 //   // Alter numbers larger than 1k
@@ -93,7 +93,7 @@ function Products() {
 
   return (
     <Container sx={{ py: 6 }} fixed>
-      <div>{loading ? "loading..." : null}</div>
+      <div>{loading ? <div><CircularProgress color="secondary" />  <br/>Page is loading... </div>: null}</div>
       <Grid container spacing={4}>
         {prod.map((item, key) => (
           <Grid item key={key} xs={12} sm={6} md={4}>

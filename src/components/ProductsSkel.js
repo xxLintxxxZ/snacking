@@ -15,6 +15,7 @@ import Skeleton from "@mui/material/Skeleton";
 import { CardHeader } from "@mui/material";
 import { Avatar } from "@mui/material";
 
+
 function ProductsSkel() {
   const [prod, setProd] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -71,7 +72,7 @@ function ProductsSkel() {
 
   return (
     <Container sx={{ py: 6 }} fixed>
-      {/* <div>{loading ? "loading..." : null}</div> */}
+     
       <Grid container spacing={5}>
         {prod.map((item, key) => (
           <Grid item key={key} xs={12} sm={6} md={4}>

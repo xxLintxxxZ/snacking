@@ -3,14 +3,14 @@ import Home from "./components/Home";
 import { Routes, Route  } from "react-router-dom";
 import Login from "./components/Login";
 import Navbar from "./components/Navbar";
-// import Products from "./components/Products";
+import Products from "./components/Products";
 import AddProduct from "./components/AddProduct"
 import Product from "./components/Product";
 import SignUp from "./components/SignUp";
 // import EditProduct from "./components/EditProduct";
 import BuyProduct from "./components/BuyProduct"
 // import SignIn from "./components/Login2"
-import ProductsSkel from "./components/ProductsSkel"
+// import ProductsSkel from "./components/ProductsSkel"
 
 require('dotenv').config()
 
@@ -23,7 +23,7 @@ function App() {
       <Routes>
      <Route path ="/" element = {<Home/>} />
      <Route path="login" element={<Login/>} />
-        <Route path="products" element={<ProductsSkel />} />
+        <Route path="products" element={<Products />} />
          {/* Remove nested route first nested the UI will be nested too. */}
         <Route path="products/:prodId" element={<Product />} />
         <Route path="products/buy/:prodId" element={<BuyProduct />} />
