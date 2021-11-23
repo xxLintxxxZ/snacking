@@ -9,13 +9,12 @@ import Product from "./components/Product";
 import SignUp from "./components/SignUp";
 // import EditProduct from "./components/EditProduct";
 import BuyProduct from "./components/BuyProduct"
-import SignIn from "./components/Login2"
+// import SignIn from "./components/Login2"
 
 require('dotenv').config()
 
 function App() {
  
-
   return (
     <div className="App">
      <Navbar/>
@@ -40,7 +39,6 @@ function App() {
    >
    </Route> */}
    </Routes>
-   
     </div>
   );
 }
