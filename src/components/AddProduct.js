@@ -12,7 +12,6 @@ function AddProduct() {
   const [prod, setProd] = useState([]);
 
 
-
     const add = async (prodname, quantity, price) => {
       await fetch("https://snackshop589.herokuapp.com/products/", {
          method: "POST",
