@@ -1,15 +1,12 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
-import { useParams } from "react-router-dom";
 // import CardMedia from "@mui/material/CardMedia";
-import { Typography } from "@mui/material";
-import { useEffect, useState } from "react";
 import { Button } from "@mui/material";
 import TextField from "@mui/material/TextField";
 import { useNavigate } from "react-router-dom";
 import styles from "./mystyle.module.css";
 import { Grid } from "@mui/material";
-
+import { useState } from "react";
 
 function AddProduct() {
 let navigate = useNavigate();
