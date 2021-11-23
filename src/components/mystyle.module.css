@@ -1,0 +1,21 @@
+.bigblue {
+    color: DodgerBlue;
+    padding: 10px;
+    font-family: Arial;
+    text-align: center;
+  }
+
+  .container {
+    display: grid; 
+    grid-template-columns: 1fr 0.4fr 1.4fr; 
+    grid-template-rows: 1fr; 
+    padding: 40px;
+    gap: 3px 40px; 
+    grid-template-areas: 
+      "Prod Prod Input"; 
+    width: 90%; 
+    height: 50%; 
+  }
+  .Prod { grid-area: Prod; }
+  .Input { grid-area: Input; }
+  

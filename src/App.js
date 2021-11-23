@@ -4,13 +4,13 @@ import { Routes, Route  } from "react-router-dom";
 import Login from "./components/Login";
 import Navbar from "./components/Navbar";
 import Products from "./components/Products";
-import AddProduct from "./components/AddProduct"
-import Product from "./components/Product";
+// import Product from "./components/Product";
 import SignUp from "./components/SignUp";
-// import EditProduct from "./components/EditProduct";
+import ProductEdit from "./components/ProductEdit";
 import BuyProduct from "./components/BuyProduct"
 // import SignIn from "./components/Login2"
 // import ProductsSkel from "./components/ProductsSkel"
+import AddProduct from "./components/AddProduct"
 
 require('dotenv').config()
 
@@ -22,10 +22,11 @@ function App() {
       {/* <button onClick={() => login("admin", process.env.REACT_APP_NOT_SECRET_CODE)}>Login</button> */}
       <Routes>
      <Route path ="/" element = {<Home/>} />
-     <Route path="login" element={<Login/>} />
+        {/* <Route path="login" element={<Login />} /> */}
+        <Route path="login" element={<Login/>} />
         <Route path="products" element={<Products />} />
          {/* Remove nested route first nested the UI will be nested too. */}
-        <Route path="products/:prodId" element={<Product />} />
+        <Route path="products/:prodId" element={<ProductEdit />} />
         <Route path="products/buy/:prodId" element={<BuyProduct />} />
         {/* <Route path="products/edit/:prodId" element={<EditProduct />} /> */}
         <Route path="addproduct" element={<AddProduct />} />

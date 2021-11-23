@@ -1,16 +1,17 @@
-import * as React from "react";
-import Box from "@mui/material/Box";
 import { useParams } from "react-router-dom";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
 // import CardMedia from "@mui/material/CardMedia";
+import { Typography } from "@mui/material";
 import { useEffect, useState } from "react";
+import { Box } from "@mui/system";
+import { Stack } from "@mui/material";
+import React from "react";
 import { Button } from "@mui/material";
 import TextField from "@mui/material/TextField";
 import { useNavigate } from "react-router-dom";
-import styles from "./mystyle.module.css";
-import { Grid } from "@mui/material";
 
-
-function BuyProduct() {
+export default function Buy() {
   const { prodId } = useParams();
   
   const [prod, setProd] = useState([]);
@@ -66,42 +67,52 @@ function BuyProduct() {
   };
 
   return (
-    <div className={styles.container}>
-      <div className={styles.Prod}>
-      <Box component="div" sx={{ color: "primary.main", fontSize: 20 }}>
-        Dear Buyer
-        </Box>
-        <Box component="div" sx={{ py:3, color: "primary.main", fontSize: 16 }}>
-          Key in the quantity that you would like to purchase in the quantity box. :)
-        </Box>
-        <Box
-          component="img"
-          sx={{
-            height: 300,
-            width: "auto",
-            maxHeight: 300,
-          }}
-          alt="the snack "
-          src= {prod.image}
-        />
-      </div>
-      <div className={styles.Input}>
-        <Box
-          component="div"
-          sx={{ py: 5, color: "primary.main", fontSize: 22 }}
-        >
-          Buy Product {prod.prodname} ?
-        </Box>
-        <Box
-          component="form"
-          onSubmit={handleSubmit}
-          sx={{ mt: 1 }}
-        >
-          <Box
-            component="div"
-            sx={{ py: 2, color: "primary.main", fontSize: 22 }}
+    <div>
+      <h2>Product: {prodId}</h2>
+      <Box
+        sx={{
+          bgcolor: "background.paper",
+          pt: 8,
+          pl: 6,
+        }}
+      >
+        <Stack sx={{ pt: 2 }} direction="row" spacing={2} justifyContent="left">
+          <Card
+            sx={{
+              maxWidth: 400,
+              maxHeight: 600,
+            }}
           >
-       <TextField
+            {/* <CardMedia
+                    component="img"
+                    sx={{
+                      height: 150,
+                      maxHeight: 150
+                      
+                    }}
+                    image={item.img}
+                    alt="random"
+                  /> */}
+            <CardContent sx={{ flexGrow: 1 }}>
+              <Typography gutterBottom sx={{ fontWeight: "bold" }}>
+                {prod.prodname}
+              </Typography>
+              <Typography>
+                {/* Quantity: {prod.quantity.toLocaleString(undefined, { maximumFractionDigits: 2 })} */}
+                Quantity: {prod.quantity}
+              </Typography>
+              <Typography>Price : ${prod.price}</Typography>
+            </CardContent>
+            <Box
+              sx={{
+                marginTop: 8,
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+            >
+              <Box component="form" onSubmit={handleSubmit} sx={{ mt: 1 }}>
+                <TextField
                   margin="normal"
                   fullWidth
                   disabled
@@ -112,10 +123,7 @@ function BuyProduct() {
                     shrink: true,
                   }}
                 />
-          </Box>
-          <Grid container spacing={6}>
-            <Grid item xs={6}>
-            <TextField
+                <TextField
                   margin="normal"
                   required
                   fullWidth
@@ -127,9 +135,7 @@ function BuyProduct() {
                     shrink: true,
                   }}
                 />
-            </Grid>
-            <Grid item xs={6}>
-            <TextField
+                <TextField
                   margin="normal"
                   required
                   disabled
@@ -142,9 +148,7 @@ function BuyProduct() {
                     shrink: true,
                   }}
                 />
-            </Grid>
-          </Grid>
-          <Button
+                <Button
                   type="submit"
                   fullWidth
                   variant="contained"
@@ -152,10 +156,11 @@ function BuyProduct() {
                 >
                   Buy this product
                 </Button>
-        </Box>
-      </div>
+              </Box>
+            </Box>
+          </Card>
+        </Stack>
+      </Box>
     </div>
   );
 }
-
-export default BuyProduct;
