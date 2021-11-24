@@ -13,7 +13,7 @@ import { useNavigate } from "react-router";
 import withStyles from "@material-ui/core/styles/withStyles";
 import PropTypes from "prop-types";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
-
+import { Alert } from "@mui/material";
 
 const styles = (theme) => ({
   palette: {
@@ -33,71 +33,76 @@ const styles = (theme) => ({
 
 const theme = createTheme({
   palette: {
-    type: 'dark',
+    type: "dark",
     primary: {
-      main: '#3f51b5',
+      main: "#3f51b5",
     },
-  
+
     text: {
-      primary: '#6666d8',
-      secondary: '#8c51ec',
+      primary: "#6666d8",
+      secondary: "#8c51ec",
     },
   },
 });
 
 function Login(props) {
-  const [show, setShow] = useState(true);
   const [tokenMsg, setToken] = useState("");
   const [message, setMessage] = useState("");
   const [check, setCheck] = useState("");
+  const [showAlert, setAlert] = useState(false);
   const { classes } = props;
   let navigate = useNavigate();
 
-  const URL = process.env.REACT_APP_URL
+  const URL = process.env.REACT_APP_URL;
 
   const login = async (username, password) => {
     try {
-      const response = await fetch(
-        URL + "/api/token/",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            username,
-            password,
-          }),
-        }
-      )
+      const response = await fetch(URL + "/api/token/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          username,
+          password,
+        }),
+      });
       const data = await response.json();
       setMessage(response.statusText);
-      console.log(response.ok)
-      alert(message)
-      setToken(data.detail)
-      setCheck(response.ok)
+      console.log(response);
+      console.log(response.ok);
+      setToken(data.detail);
+      setCheck(response.ok);
     } catch (error) {
       setMessage(error.message);
     }
   };
- 
-    useEffect(() => {
-      if (check === true) {
-        navigate("/")
-      }
-    });
-  
+
+  useEffect(() => {
+    if (check === true) {
+      navigate("/");
+    }
+  });
+
   const routing = () => {
-    if (check === true)
-      navigate ("/")
-  }
-  
+    if (check === true) {
+      navigate("/");
+      setAlert(false)
+    }
+    else {
+      setAlert(true);
+    }
+  };
+
+  console.log(message);
+  console.log(tokenMsg);
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     console.log(data.get("username"));
     login(data.get("username"), data.get("password"));
-    routing()
+    routing();
     // const queryClient = useQueryClient();
     // import { useQueryClient } from "react-query";
   };
@@ -114,14 +119,14 @@ function Login(props) {
             alignItems: "center",
           }}
         >
-          <LockOutlinedIcon className={classes.LockOutlinedIcon}>
-          </LockOutlinedIcon>
+          <LockOutlinedIcon
+            className={classes.LockOutlinedIcon}
+          ></LockOutlinedIcon>
           {/* <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}> */}
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
           <Box component="form" onSubmit={handleSubmit} sx={{ mt: 1 }}>
-           
             <TextField
               margin="normal"
               required
@@ -147,7 +152,6 @@ function Login(props) {
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
-              onClick={() => setShow((a) => !a)}
             >
               Sign In
             </Button>
@@ -158,11 +162,16 @@ function Login(props) {
                 </Link>
               </Grid>
             </Grid>
-           </Box> 
-          <button disabled > {tokenMsg} </button>
-          <div style={{ display: show ? "block" : "none" }}>hello</div>
           </Box>
-       </Container> 
+
+          <Box sx={{py: 3 }}>
+            {" "}
+            <div>
+              {showAlert ? <Alert severity="error">{tokenMsg}</Alert> : <></>}
+            </div>{" "}
+          </Box>
+        </Box>
+      </Container>
     </ThemeProvider>
   );
 }
