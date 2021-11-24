@@ -56,7 +56,6 @@ function Products() {
       setProd(prod);
       setLoading(false);
     };
-
     fetchTodo();
   }, [URL]);
 
@@ -79,15 +78,6 @@ function Products() {
     return refresh;
   };
 
-  // if (refresh === true) {
-  //   // setTimeout(function () {
-  //   //   navigate("/products");
-  //   // }, 5000);
-  //   navigate("/products")
-  //   if (loading === false) {
-  //     setRefresh(false)
-  //   }
-  // }
 
   return (
     <Container sx={{ px : 5, py: 6 }} fixed>

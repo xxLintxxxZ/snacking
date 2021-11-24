@@ -6,7 +6,7 @@ import Navbar from "./components/Navbar";
 import Products from "./components/Products";
 import SignUp from "./components/SignUp";
 import ProductEdit from "./components/ProductEdit";
-import BuyProduct from "./components/BuyProduct";
+import BuyProductAlert from "./components/BuyProdAlert";
 import AddProduct from "./components/AddProduct";
 // require("dotenv").config();
 
@@ -16,13 +16,14 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="login" element={<Login />} />
+        <Route path="login" element={<Login/>} />
         <Route path="products" element={<Products />} />
         {/* Remove nested route first nested the UI will be nested too. */}
         <Route path="products/:prodId" element={<ProductEdit />} />
-        <Route path="products/buy/:prodId" element={<BuyProduct />} />
+        <Route path="products/buy/:prodId" element={<BuyProductAlert />} />
         <Route path="addproduct" element={<AddProduct />} />
         <Route path="signup" element={<SignUp />} />
+ 
         <Route
           path="*"
           element={

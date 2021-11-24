@@ -59,7 +59,7 @@ function BuyProduct() {
        
         setTimeout(function () {
           navigate("/products");
-        }, 2000);
+        }, 3000);
         setRefresh(false);
         return refresh;
     }
