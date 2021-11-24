@@ -13,8 +13,9 @@ import Swal from "sweetalert2";
 function BuyProductAlert() {
   const { prodId } = useParams();
   const [prod, setProd] = useState([]);
-  // const [total, setTotal] = useState("");
+  const [total, setTotal] = useState("");
   const [qtyBought, setQty] = useState("");
+  const [confirm, setConfirm] = useState(false);
   let navigate = useNavigate();
   const [refresh, setRefresh] = useState(false);
   // const queryClient = useQueryClient();
@@ -63,7 +64,7 @@ function BuyProductAlert() {
     const qty = prod.quantity - data.get("quantity");
     setQty(data.get("quantity"));
     console.log(qtyBought);
-
+    setConfirm(true);
     if (qty < 0)
       Swal.fire({
         title: "Oopps!",
@@ -71,7 +72,7 @@ function BuyProductAlert() {
         icon: "error",
       });
     else {
-      add(prod.prodname, qty, prod.price);
+      // add(prod.prodname, qty, prod.price);
       console.log(qtyBought);
       const total = data.get("quantity") * prod.price;
       const formatTotal = new Intl.NumberFormat("en-US", {
@@ -79,20 +80,45 @@ function BuyProductAlert() {
         currency: "USD",
       }).format(total);
       console.log(formatTotal);
+      setTotal(formatTotal);
       // console.log(total);
-      
-      //theState does not store information to show in alert as fast as I want
-      setTimeout(function () {
-        myalert(data.get("quantity"), formatTotal);
-      }, 1000);
 
-      setRefresh(true);
-      setTimeout(function () {
-        navigate("/products");
-      }, 8000);
-      setRefresh(false)
-        return refresh;
+      //theState does not store information to show in alert as fast as I want
+      // setTimeout(function () {
+      //   myalert(data.get("quantity"), formatTotal);
+      // }, 1000);
+
+      // setRefresh(true);
+      // setTimeout(function () {
+      //   navigate("/products");
+      // }, 8000);
+      // setRefresh(false)
+      //   return refresh;
     }
+  };
+
+  const handleClick = () => {
+    const toBuy = document.getElementById("quantity").value;
+    console.log(toBuy);
+    const updateQty = prod.quantity - toBuy
+    add(prod.prodname, updateQty, prod.price);
+    const total = toBuy * prod.price;
+    const formatTotal = new Intl.NumberFormat("en-US", {
+      style: "currency",
+      currency: "USD",
+    }).format(total);
+    //theState does not store information to show in alert as fast as I want
+    // setTimeout(function () {
+    //   myalert(toBuy, formatTotal);
+    // }, 1000);
+    myalert(toBuy, formatTotal);
+    
+    setRefresh(true);
+    setTimeout(function () {
+      navigate("/products");
+    }, 4000);
+    setRefresh(false)
+      return refresh;
   };
 
   return (
@@ -156,6 +182,7 @@ function BuyProductAlert() {
                 InputLabelProps={{
                   shrink: true,
                 }}
+                id="quantity"
               />
             </Grid>
             <Grid item xs={6}>
@@ -173,14 +200,32 @@ function BuyProductAlert() {
                 }}
               />
             </Grid>
+            <Grid item xs={4}>
+              <Button type="submit" variant="contained">
+                Compute the total amount
+              </Button>
+            </Grid>
+            <Grid item xs={7}>
+              <div>
+                {confirm ? (
+                  <Box
+                    component="div"
+                    sx={{ pl: 3, color: "primary.main", fontSize: 20 }}
+                  >
+                    You are buying this product at a total price of : {total}.
+                  </Box>
+                ) : null}
+              </div>
+            </Grid>
           </Grid>
           <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            sx={{ mt: 3, mb: 2 }}
+            variant="outlined"
+            sx={{ mt: 9, mb: 2 }}
+            onClick={() => {
+              handleClick();
+            }}
           >
-            Buy this product
+            Yes I am going to buy
           </Button>
         </Box>
       </div>

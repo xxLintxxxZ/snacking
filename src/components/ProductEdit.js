@@ -76,7 +76,7 @@ export default function ProductEdit() {
           src={prod.image}
         />
         <Box component="div" sx={{ py:2 ,color: "primary.main", fontSize: 16 }}>
-          Original Price: {prod.quantity}
+          Original Price: ${prod.price}
         </Box>
         <Box
           component="div"
