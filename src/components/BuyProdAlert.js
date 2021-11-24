@@ -8,18 +8,18 @@ import TextField from "@mui/material/TextField";
 import { useNavigate } from "react-router-dom";
 import styles from "./mystyle.module.css";
 import { Grid } from "@mui/material";
-import Swal from 'sweetalert2';
-
+import Swal from "sweetalert2";
 
 function BuyProductAlert() {
-
   const { prodId } = useParams();
   const [prod, setProd] = useState([]);
+  // const [total, setTotal] = useState("");
+  const [qtyBought, setQty] = useState("");
   let navigate = useNavigate();
   const [refresh, setRefresh] = useState(false);
   // const queryClient = useQueryClient();
   // const { status, data } = useQuery("prod", fetchTodo);
-  
+
   const URL = process.env.REACT_APP_URL;
 
   useEffect(() => {
@@ -29,8 +29,8 @@ function BuyProductAlert() {
       setProd(prod);
     };
     fetchProd();
-  },[URL, prodId]);
-  
+  }, [URL, prodId, refresh]);
+
   // [URL, prodId]
   //* ==== Edit product =====
 
@@ -46,41 +46,52 @@ function BuyProductAlert() {
         price,
       }),
     });
-  
   };
 
-  const myalert = () => {
+  const myalert = (num, total) => {
     Swal.fire({
-      title: 'Hey!',
-      text: 'Thanks for buying',
-      icon: 'success',
-      confirmButtonText: 'See ya'
-    })
-  }
+      title: "Hey!",
+      text: `Thanks for buying ${num} item(s). The total amount is ${total}.`,
+      icon: "success",
+      confirmButtonText: "See ya",
+    });
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     const qty = prod.quantity - data.get("quantity");
-    console.log(qty);
-   
-    if (qty < 0) Swal.fire({
-      title: 'Oopps!',
-      text: 'You cannot buy more than the stocks available!',
-      icon: 'error',
-    });
+    setQty(data.get("quantity"));
+    console.log(qtyBought);
+
+    if (qty < 0)
+      Swal.fire({
+        title: "Oopps!",
+        text: "You cannot buy more than the stocks available!",
+        icon: "error",
+      });
     else {
       add(prod.prodname, qty, prod.price);
-    //   setTimeout(function () {
-    //     test()
-    //  }, 1000);
-      myalert();
+      console.log(qtyBought);
+      const total = data.get("quantity") * prod.price;
+      const formatTotal = new Intl.NumberFormat("en-US", {
+        style: "currency",
+        currency: "USD",
+      }).format(total);
+      console.log(formatTotal);
+      // console.log(total);
+      
+      //theState does not store information to show in alert as fast as I want
+      setTimeout(function () {
+        myalert(data.get("quantity"), formatTotal);
+      }, 1000);
+
       setRefresh(true);
       setTimeout(function () {
         navigate("/products");
-      }, 3000);
-      setRefresh(false);
-       return refresh;
+      }, 8000);
+      setRefresh(false)
+        return refresh;
     }
   };
 
@@ -171,7 +182,6 @@ function BuyProductAlert() {
           >
             Buy this product
           </Button>
-      
         </Box>
       </div>
     </div>
