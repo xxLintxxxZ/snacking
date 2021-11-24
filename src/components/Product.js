@@ -11,6 +11,8 @@ import { Button } from "@mui/material";
 import TextField from "@mui/material/TextField";
 import { useNavigate } from "react-router-dom";
 
+
+
 export default function Product() {
   const { prodId } = useParams();
   const [prod, setProd] = useState([]);
