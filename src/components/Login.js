@@ -10,26 +10,10 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useNavigate } from "react-router";
-import withStyles from "@material-ui/core/styles/withStyles";
-import PropTypes from "prop-types";
+import { Avatar } from "@mui/material";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import { Alert } from "@mui/material";
 
-const styles = (theme) => ({
-  palette: {
-    primary: {
-      main: "#3f51b5",
-    },
-    text: {
-      primary: "#6666d8",
-      secondary: "#8c51ec",
-    },
-  },
-  LockOutlinedIcon: {
-    margin: theme.spacing.unit,
-    color: theme.palette.secondary.main,
-  },
-});
 
 const theme = createTheme({
   palette: {
@@ -37,7 +21,9 @@ const theme = createTheme({
     primary: {
       main: "#3f51b5",
     },
-
+    secondary: {
+      main: '#f50057',
+    },
     text: {
       primary: "#6666d8",
       secondary: "#8c51ec",
@@ -50,7 +36,7 @@ function Login(props) {
   const [message, setMessage] = useState("");
   const [check, setCheck] = useState("");
   const [showAlert, setAlert] = useState(false);
-  const { classes } = props;
+ 
   let navigate = useNavigate();
 
   const URL = process.env.REACT_APP_URL;
@@ -69,7 +55,6 @@ function Login(props) {
       });
       const data = await response.json();
       setMessage(response.statusText);
-      console.log(response);
       console.log(response.ok);
       setToken(data.detail);
       setCheck(response.ok);
@@ -119,10 +104,9 @@ function Login(props) {
             alignItems: "center",
           }}
         >
-          <LockOutlinedIcon
-            className={classes.LockOutlinedIcon}
-          ></LockOutlinedIcon>
-          {/* <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}> */}
+          <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
+          <LockOutlinedIcon/>
+                </Avatar>
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
@@ -163,11 +147,10 @@ function Login(props) {
               </Grid>
             </Grid>
           </Box>
-
           <Box sx={{py: 3 }}>
             {" "}
             <div>
-              {showAlert ? <Alert severity="error">{tokenMsg}</Alert> : <></>}
+              {showAlert ? <Alert severity="error">{message}{"!"}<br/>{tokenMsg} </Alert> : <></>}
             </div>{" "}
           </Box>
         </Box>
@@ -176,8 +159,5 @@ function Login(props) {
   );
 }
 
-Login.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
 
-export default withStyles(styles)(Login);
+export default (Login);
