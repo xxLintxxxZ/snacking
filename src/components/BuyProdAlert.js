@@ -100,25 +100,34 @@ function BuyProductAlert() {
   const handleClick = () => {
     const toBuy = document.getElementById("quantity").value;
     console.log(toBuy);
-    const updateQty = prod.quantity - toBuy
-    add(prod.prodname, updateQty, prod.price);
-    const total = toBuy * prod.price;
-    const formatTotal = new Intl.NumberFormat("en-US", {
-      style: "currency",
-      currency: "USD",
-    }).format(total);
-    //theState does not store information to show in alert as fast as I want
-    // setTimeout(function () {
-    //   myalert(toBuy, formatTotal);
-    // }, 1000);
-    myalert(toBuy, formatTotal);
-    
-    setRefresh(true);
-    setTimeout(function () {
-      navigate("/products");
-    }, 4000);
-    setRefresh(false)
+    const qty = prod.quantity - toBuy
+    if (qty < 0)
+      Swal.fire({
+        title: "Oopps!",
+        text: "You cannot buy more than the stocks available!",
+        icon: "error",
+      });
+    else {
+      const updateQty = prod.quantity - toBuy
+      add(prod.prodname, updateQty, prod.price);
+      const total = toBuy * prod.price;
+      const formatTotal = new Intl.NumberFormat("en-US", {
+        style: "currency",
+        currency: "USD",
+      }).format(total);
+      //theState does not store information to show in alert as fast as I want
+      // setTimeout(function () {
+      //   myalert(toBuy, formatTotal);
+      // }, 1000);
+      myalert(toBuy, formatTotal);
+
+      setRefresh(true);
+      setTimeout(function () {
+        navigate("/products");
+      }, 4000);
+      setRefresh(false)
       return refresh;
+    };
   };
 
   return (
