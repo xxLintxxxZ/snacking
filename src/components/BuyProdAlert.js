@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 import styles from "./mystyle.module.css";
 import { Grid } from "@mui/material";
 import Swal from "sweetalert2";
+import { InputAdornment } from "@mui/material";
 
 function BuyProductAlert() {
   const { prodId } = useParams();
@@ -204,7 +205,9 @@ function BuyProductAlert() {
                 fullWidth
                 name="price"
                 label="Price"
-                // defaultValue={prod.price}
+                inputProps={{ min: 0, max: 5000 }}
+                InputProps={{ startAdornment: <InputAdornment position="start">$</InputAdornment>, }}
+                helperText="Only accepts up to 2 decimal places"
                 value={prod.price}
                 InputLabelProps={{
                   shrink: true,

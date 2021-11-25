@@ -9,6 +9,7 @@ import TextField from "@mui/material/TextField";
 import { useNavigate } from "react-router-dom";
 import styles from "./mystyle.module.css";
 import { Grid } from "@mui/material";
+import { InputAdornment } from "@mui/material";
 
 export default function ProductEdit() {
   const { prodId } = useParams();
@@ -138,7 +139,9 @@ export default function ProductEdit() {
                 required
                 name="price"
                 label="Price"
-                // defaultValue={prod.price}
+                inputProps={{ min: 0, max: 5000 }}
+                InputProps={{ startAdornment: <InputAdornment position="start">$</InputAdornment>, }}
+                helperText="Only accepts up to 2 decimal places"
                 placeholder={`${prod.price}`}
                 InputLabelProps={{
                   shrink: true,

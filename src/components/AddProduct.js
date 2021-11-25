@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import styles from "./mystyle.module.css";
 import { Grid } from "@mui/material";
 import { useState } from "react";
+import { InputAdornment } from "@mui/material";
 
 function AddProduct() {
 let navigate = useNavigate();
@@ -91,7 +92,7 @@ const [prod, setProd] = useState([]);
                 required
                 fullWidth
                 type="number"
-                inputProps={{ min: 0, max: 3000 }}
+                inputProps={{ min: 0, max: 5000 }}
                 name="quantity"
                 label="Quantity"
               />
@@ -101,6 +102,9 @@ const [prod, setProd] = useState([]);
                 margin="normal"
                 required
                 fullWidth
+                inputProps={{ min: 0, max: 5000 }}
+                InputProps={{ startAdornment: <InputAdornment position="start">$</InputAdornment>, }}
+                helperText="Only accepts up to 2 decimal places"
                 name="price"
                 label="Price"
               />
