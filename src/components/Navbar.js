@@ -58,7 +58,6 @@ export default function NavBar() {
             >
               SNACKS
             </Typography>
-
             <Button
               component={RouterLink}
               to="/products"

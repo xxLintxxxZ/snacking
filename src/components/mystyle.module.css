@@ -20,3 +20,28 @@
   .Prod { grid-area: Prod; }
   .Input { grid-area: Input; }
   
+
+
+  .menu_bar {
+    background-color: #7b8ddb;
+    display: flex;
+    justify-content: space-between;
+    box-sizing: border-box;
+  }
+  
+  .item {
+    color: white;
+    background-color: transparent;
+    font-size: 18px;
+    display: inline-block;
+    box-sizing: border-box;
+    padding: 16px 20px;
+  }
+  
+  .item.title {
+    font-weight: 600;
+  }
+  
+  .item:hover {
+    background-color: rgba(111, 172, 230, 0.1);
+  }

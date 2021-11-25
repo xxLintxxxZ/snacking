@@ -2,18 +2,20 @@ import "./App.css";
 import Home from "./components/Home";
 import { Routes, Route } from "react-router-dom";
 import Login from "./components/Login";
-import Navbar from "./components/Navbar";
+// import Navbar from "./components/Navbar";
 import Products from "./components/Products";
 import SignUp from "./components/SignUp";
 import ProductEdit from "./components/ProductEdit";
 import BuyProductAlert from "./components/BuyProdAlert";
 import AddProduct from "./components/AddProduct";
 // require("dotenv").config();
+import NavBar2 from "./components/Navbar2";
 
 function App() {
   return (
     <div className="App">
-      <Navbar />
+      {/* <Navbar /> */}
+      <NavBar2 />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="login" element={<Login/>} />
