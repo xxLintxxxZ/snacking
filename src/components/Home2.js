@@ -36,8 +36,6 @@ const Home2 = (props) => {
 
   return (
     <>
-      <p>I need a coffeebreak</p>
-
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <main>

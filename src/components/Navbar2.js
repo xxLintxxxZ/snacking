@@ -57,10 +57,10 @@ export default function NavBar2() {
           </Button>
           <Button
             component={RouterLink}
-            to="/addproduct"
+            to="/productsbuy"
             sx={{  color: "white" }}
           >
-            ADD Products
+            Buy Products
           </Button>
           <Button component={RouterLink} to="/login" sx={{ pr: 3, color: "white" }}>
             Login

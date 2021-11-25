@@ -13,7 +13,7 @@ import { useNavigate } from "react-router";
 import { Avatar } from "@mui/material";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import { Alert } from "@mui/material";
-
+import {atom, useAtom} from 'jotai'
 
 const theme = createTheme({
   palette: {
@@ -31,18 +31,24 @@ const theme = createTheme({
   },
 });
 
-function Login(props) {
+export const testAtom = atom('')
+
+function Login({ getToken}) {
   const [tokenMsg, setToken] = useState("");
   const [message, setMessage] = useState("");
   const [check, setCheck] = useState("");
   const [showAlert, setAlert] = useState(false);
- 
+  
+
+const [isLog, setLog] = useAtom(testAtom)
+console.log(isLog)
   let navigate = useNavigate();
 
   const URL = process.env.REACT_APP_URL;
 
   const login = async (username, password) => {
     try {
+      // URL + "/api/token/"
       const response = await fetch(URL + "/api/token/", {
         method: "POST",
         headers: {
@@ -54,7 +60,10 @@ function Login(props) {
         }),
       });
       const data = await response.json();
+      console.log(data)
+      setLog(sessionStorage.setItem('token', data.access));
       setMessage(response.statusText);
+      // console.log(response)
       console.log(response.ok);
       setToken(data.detail);
       setCheck(response.ok);
@@ -65,13 +74,17 @@ function Login(props) {
 
   useEffect(() => {
     if (check === true) {
-      navigate("/");
+      setTimeout(function () {
+        navigate("/productsbuy");
+      }, 2000);
     }
   });
 
   const routing = () => {
     if (check === true) {
-      navigate("/");
+      setTimeout(function () {
+        navigate("/productsbuy");
+      }, 2000);
       setAlert(false)
     }
     else {
