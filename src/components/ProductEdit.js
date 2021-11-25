@@ -123,7 +123,8 @@ export default function ProductEdit() {
                 fullWidth
                 name="quantity"
                 label="Quantity"
-                // defaultValue={prod.quantity}
+                type="number"
+                inputProps={{ min: 0, max: 3000 }}
                 placeholder={`${prod.quantity}`}
                 InputLabelProps={{
                   shrink: true,

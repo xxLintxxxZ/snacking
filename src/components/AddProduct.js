@@ -90,6 +90,8 @@ const [prod, setProd] = useState([]);
                 margin="normal"
                 required
                 fullWidth
+                type="number"
+                inputProps={{ min: 0, max: 3000 }}
                 name="quantity"
                 label="Quantity"
               />
