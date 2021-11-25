@@ -61,24 +61,6 @@ function ProductsBuy() {
 
   console.log(prod);
 
-  const del = async (a, b) => {
-    await fetch(URL + "/products/" + a, {
-      method: "DELETE",
-    })
-      .then((res) => res.text())
-      .then((res) => console.log(res));
-
-    prod.splice(b, 1);
-    setRefresh(true);
-
-    setTimeout(function () {
-      navigate("/products");
-    }, 5000);
-    setRefresh(false);
-    return refresh;
-  };
-
-
   return (
     <Container sx={{ px : 5, py: 6 }} fixed>
       <div>
