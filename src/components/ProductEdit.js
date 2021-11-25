@@ -114,6 +114,7 @@ export default function ProductEdit() {
               InputLabelProps={{
                 shrink: true,
               }}
+              autoFocus
             />
           </Box>
           <Grid container spacing={6}>
@@ -139,7 +140,8 @@ export default function ProductEdit() {
                 required
                 name="price"
                 label="Price"
-                inputProps={{ min: 0, max: 5000 }}
+                type="number"
+                inputProps={{ min: 0, max: 5000, step :0.01 }}
                 InputProps={{ startAdornment: <InputAdornment position="start">$</InputAdornment>, }}
                 helperText="Only accepts up to 2 decimal places"
                 placeholder={`${prod.price}`}

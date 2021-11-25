@@ -102,9 +102,10 @@ const [prod, setProd] = useState([]);
                 margin="normal"
                 required
                 fullWidth
-                inputProps={{ min: 0, max: 5000 }}
+                type="number"
+                inputProps={{ min: 0, max: 5000, step :0.01 }}
                 InputProps={{ startAdornment: <InputAdornment position="start">$</InputAdornment>, }}
-                helperText="Only accepts up to 2 decimal places"
+                // helperText="Only accepts up to 2 decimal places"
                 name="price"
                 label="Price"
               />

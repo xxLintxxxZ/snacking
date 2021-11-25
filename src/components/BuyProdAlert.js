@@ -21,6 +21,7 @@ function BuyProductAlert() {
   const [refresh, setRefresh] = useState(false);
   // const queryClient = useQueryClient();
   // const { status, data } = useQuery("prod", fetchTodo);
+  
 
   const URL = process.env.REACT_APP_URL;
 
@@ -177,6 +178,7 @@ function BuyProductAlert() {
               InputLabelProps={{
                 shrink: true,
               }}
+              autoFocus="false"
             />
           </Box>
           <Grid container spacing={6}>
@@ -195,6 +197,7 @@ function BuyProductAlert() {
                   shrink: true,
                 }}
                 id="quantity"
+               
               />
             </Grid>
             <Grid item xs={6}>
@@ -205,13 +208,14 @@ function BuyProductAlert() {
                 fullWidth
                 name="price"
                 label="Price"
-                inputProps={{ min: 0, max: 5000 }}
+                type="number"
+                inputProps={{ min: 0, max: 5000, step :0.01 }}
                 InputProps={{ startAdornment: <InputAdornment position="start">$</InputAdornment>, }}
-                helperText="Only accepts up to 2 decimal places"
                 value={prod.price}
                 InputLabelProps={{
                   shrink: true,
                 }}
+                autoFocus="false"
               />
             </Grid>
             <Grid item xs={4}>
