@@ -186,6 +186,8 @@ function BuyProductAlert() {
                 fullWidth
                 name="quantity"
                 label="Quantity"
+                type="number"
+                inputProps={{ min: 0, max: 10 }}
                 // defaultValue={prod.quantity}
                 placeholder={`${prod.quantity}`}
                 InputLabelProps={{

@@ -87,6 +87,7 @@ function Login(props) {
     const data = new FormData(event.currentTarget);
     console.log(data.get("username"));
     login(data.get("username"), data.get("password"));
+    
     routing();
     // const queryClient = useQueryClient();
     // import { useQueryClient } from "react-query";
