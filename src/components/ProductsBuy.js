@@ -38,9 +38,9 @@ import { CircularProgress } from "@mui/material";
 function ProductsBuy() {
   const [prod, setProd] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [refresh, setRefresh] = useState(false);
+  // const [refresh, setRefresh] = useState(false);
 
-  let navigate = useNavigate();
+  // let navigate = useNavigate();
   // const queryClient = useQueryClient();
   // const { status, data } = useQuery("prod", fetchTodo);
   const URL = process.env.REACT_APP_URL;
