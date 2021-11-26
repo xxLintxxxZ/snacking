@@ -75,8 +75,7 @@ console.log(isLog)
   useEffect(() => {
     if (check === true) {
       if (document.getElementById("username").value === 'admin')
-      {
-        console.log(document.getElementById("username").value)
+      {console.log(document.getElementById("username").value)
         setTimeout(function () {
           navigate("/productsAdmin");
         }, 2000);
@@ -90,16 +89,15 @@ console.log(isLog)
   const routing = () => {
     if (check === true) {
       if (document.getElementById("username").value === 'admin')
-      {
-        console.log(document.getElementById("username").value)
-        // setTimeout(function () {
-        //   navigate("/products");
-        // }, 2000);
+      {console.log(document.getElementById("username").value)
+        setTimeout(function () {
+          navigate("/productsAdmin");
+        }, 2000);
       }
-      // else {  setTimeout(function () {
-      //   navigate("/productsbuy");
-      // }, 2000);}
-      // setAlert(false)
+      else { setTimeout(function () {
+        navigate("/productsbuy");
+      }, 2000);}
+      setAlert(false)
     }
     else {
       setAlert(true);

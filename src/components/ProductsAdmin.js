@@ -48,10 +48,10 @@ function ProductsAdmin() {
   // http://localhost:8000/products/
   // process.env.REACT_URL
   // console.log(process.env.REACT_APP_URL + "/products")
-
+  // URL + "/productsAdmin"
   useEffect(() => {
     const fetchTodo = async () => {
-      const response = await fetch(URL + "/products");
+      const response = await fetch(URL + "/products/");
       const prod = await response.json();
       setProd(prod);
       setLoading(false);
@@ -72,7 +72,7 @@ function ProductsAdmin() {
     setRefresh(true);
 
     setTimeout(function () {
-      navigate("/products");
+      navigate("/productsAdmin");
     }, 5000);
     setRefresh(false);
     return refresh;
@@ -129,7 +129,7 @@ function ProductsAdmin() {
               </CardContent>
               <CardActions>
                 <Link
-                  to={`/products/${item.id}`}
+                  to={`/productsAdmin/${item.id}`}
                   style={{ textDecoration: "none", margin: "0 auto" }}
                 >
                   <Button size="small">Edit</Button>

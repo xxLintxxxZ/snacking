@@ -18,6 +18,8 @@ import { useAtom } from "jotai";
 import { testAtom } from "./components/Login";
 import ProductsAdmin from "./components/ProductsAdmin";
 import ProductsPub from "./components/ProductsPub";
+import NavBarPte from "./components/NavbarPte";
+
 
 function App() {
   const [isToken] = useAtom(testAtom);
@@ -62,18 +64,20 @@ function App() {
   return (
     <div className="App">
       {/* <Navbar /> */}
-      <NavBar2 />
+      <NavBarPte />
       <Routes>
+      <NavBarPte />
         <Route path="/" element={<Home2 />} />
         <Route path="login" element={<Login />} />
+        <Route path="productsAdmin" element={<ProductsAdmin/>} />
         <Route path="productsbuy" element={<ProductsBuy />} />
         {/* Remove nested route first nested the UI will be nested too. */}
-        <Route path="products/:prodId" element={<ProductEdit />} />
+        <Route path="productsAdmin/:prodId" element={<ProductEdit />} />
         <Route path="products/buy/:prodId" element={<BuyProductAlert />} />
         <Route path="addproduct" element={<AddProduct />} />
-        <Route path="productsAdmin" element={<ProductsAdmin/>} />
         <Route path="products" element={<Products />} />
         <Route path="signup" element={<SignUp />} />
+        <Route path="productsPub" element={<ProductsPub />} />
         <Route
           path="*"
           element={

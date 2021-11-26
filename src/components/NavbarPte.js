@@ -26,7 +26,7 @@ const theme = createTheme({
   },
 });
 
-export default function NavBar2() {
+export default function NavBarPte() {
   return (
     <ThemeProvider theme={theme}>
       {/* <AppBar position="static"> */}

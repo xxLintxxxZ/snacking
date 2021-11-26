@@ -59,7 +59,7 @@ export default function ProductEdit() {
     // const queryClient = useQueryClient();
     // import { useQueryClient } from "react-query";
     setTimeout(function () {
-      navigate("/products");
+      navigate("/productsAdmin");
     }, 3000);
   };
 

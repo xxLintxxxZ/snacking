@@ -30,7 +30,7 @@ const [prod, setProd] = useState([]);
     // console.log(prod)
     setProd(prod);
     setTimeout(function () {
-      navigate("/products");
+      navigate("/productsAdmin");
     }, 1000);
   }
 
