@@ -125,7 +125,7 @@ function BuyProductAlert() {
 
       setRefresh(true);
       setTimeout(function () {
-        navigate("/products");
+        navigate("/productsbuy");
       }, 4000);
       setRefresh(false)
       return refresh;
