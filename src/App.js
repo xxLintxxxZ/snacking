@@ -16,6 +16,8 @@ import ProductsBuy from "./components/ProductsBuy";
 import { useEffect } from "react";
 import { useAtom } from "jotai";
 import { testAtom } from "./components/Login";
+import ProductsAdmin from "./components/ProductsAdmin";
+import ProductsPub from "./components/ProductsPub";
 
 function App() {
   const [isToken] = useAtom(testAtom);
@@ -41,7 +43,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home2 />} />
           <Route path="login" element={<Login />} />
-          <Route path="products" element={<Products />} />
+          <Route path="productsPub" element={<ProductsPub />} />
           {/* Remove nested route first nested the UI will be nested too. */}
           <Route path="signup" element={<SignUp />} />
           <Route
@@ -69,6 +71,8 @@ function App() {
         <Route path="products/:prodId" element={<ProductEdit />} />
         <Route path="products/buy/:prodId" element={<BuyProductAlert />} />
         <Route path="addproduct" element={<AddProduct />} />
+        <Route path="productsAdmin" element={<ProductsAdmin/>} />
+        <Route path="products" element={<Products />} />
         <Route path="signup" element={<SignUp />} />
         <Route
           path="*"

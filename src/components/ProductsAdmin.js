@@ -9,7 +9,7 @@ import CardMedia from "@mui/material/CardMedia";
 import { Typography } from "@mui/material";
 import { Button } from "@mui/material";
 import { Container } from "@mui/material";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 // require('dotenv').config()
 import { CircularProgress } from "@mui/material";
 
@@ -35,12 +35,12 @@ import { CircularProgress } from "@mui/material";
 // Number.prototype.commarize = commarize
 // String.prototype.commarize = commarize
 
-function ProductsBuy() {
+function ProductsAdmin() {
   const [prod, setProd] = useState([]);
   const [loading, setLoading] = useState(true);
-  // const [refresh, setRefresh] = useState(false);
+  const [refresh, setRefresh] = useState(false);
 
-  // let navigate = useNavigate();
+  let navigate = useNavigate();
   // const queryClient = useQueryClient();
   // const { status, data } = useQuery("prod", fetchTodo);
   const URL = process.env.REACT_APP_URL;
@@ -60,6 +60,24 @@ function ProductsBuy() {
   }, [URL]);
 
   console.log(prod);
+
+  const del = async (a, b) => {
+    await fetch(URL + "/products/" + a, {
+      method: "DELETE",
+    })
+      .then((res) => res.text())
+      .then((res) => console.log(res));
+
+    prod.splice(b, 1);
+    setRefresh(true);
+
+    setTimeout(function () {
+      navigate("/products");
+    }, 5000);
+    setRefresh(false);
+    return refresh;
+  };
+
 
   return (
     <Container sx={{ px : 5, py: 6 }} fixed>
@@ -111,11 +129,20 @@ function ProductsBuy() {
               </CardContent>
               <CardActions>
                 <Link
+                  to={`/products/${item.id}`}
+                  style={{ textDecoration: "none", margin: "0 auto" }}
+                >
+                  <Button size="small">Edit</Button>
+                </Link>
+                <Link
                   to={`/products/buy/${item.id}`}
                   style={{ textDecoration: "none", margin: "0 auto" }}
                 >
                   <Button size="small">Buy</Button>
                 </Link>
+                <Button onClick={() => del(item.id, key)} size="small">
+                  Delete
+                </Button>
               </CardActions>
             </Card>
           </Grid>
@@ -126,4 +153,4 @@ function ProductsBuy() {
   );
 }
 
-export default ProductsBuy;
+export default ProductsAdmin;

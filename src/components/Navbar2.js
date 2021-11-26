@@ -52,7 +52,7 @@ export default function NavBar2() {
           </Link>
         </div>
         <div className={styles.group}>
-          <Button component={RouterLink} to="/products" sx={{ py: 2, color: "white" }}>
+          <Button component={RouterLink} to="/productsPub" sx={{ py: 2, color: "white" }}>
             Products
           </Button>
           <Button
