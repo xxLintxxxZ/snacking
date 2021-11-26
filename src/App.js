@@ -20,7 +20,6 @@ import ProductsAdmin from "./components/ProductsAdmin";
 import ProductsPub from "./components/ProductsPub";
 import NavBarPte from "./components/NavbarPte";
 
-
 function App() {
   const [isToken] = useAtom(testAtom);
 
@@ -46,6 +45,7 @@ function App() {
           <Route path="/" element={<Home2 />} />
           <Route path="login" element={<Login />} />
           <Route path="productsPub" element={<ProductsPub />} />
+          <Route path="logout" element={<Home2 />} />
           {/* Remove nested route first nested the UI will be nested too. */}
           <Route path="signup" element={<SignUp />} />
           <Route
@@ -66,9 +66,9 @@ function App() {
       {/* <Navbar /> */}
       <NavBarPte />
       <Routes>
-        <Route path="/" element={<Home2 />} />
+        <Route path="logout" element={<Home2 />} />
         <Route path="login" element={<Login />} />
-        <Route path="productsAdmin" element={<ProductsAdmin/>} />
+        <Route path="productsAdmin" element={<ProductsAdmin />} />
         <Route path="productsbuy" element={<ProductsBuy />} />
         {/* Remove nested route first nested the UI will be nested too. */}
         <Route path="productsAdmin/:prodId" element={<ProductEdit />} />

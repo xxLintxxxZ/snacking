@@ -27,6 +27,11 @@ const theme = createTheme({
 });
 
 export default function NavBarPte() {
+
+  const handleClick = () => {
+    sessionStorage.clear();
+  };
+
   return (
     <ThemeProvider theme={theme}>
       {/* <AppBar position="static"> */}
@@ -62,8 +67,10 @@ export default function NavBarPte() {
           >
             Buy Products
           </Button>
-          <Button component={RouterLink} to="/login" sx={{ pr: 3, color: "white" }}>
-            Login
+          <Button component={RouterLink} to="/logout"  onClick={() => {
+              handleClick();
+            }} sx={{ pr: 3, color: "white" }}>
+            LogOut
           </Button>
         </div>
       </nav>
