@@ -111,12 +111,6 @@ function ProductsBuy() {
               </CardContent>
               <CardActions>
                 <Link
-                  to={`/products/${item.id}`}
-                  style={{ textDecoration: "none", margin: "0 auto" }}
-                >
-                  <Button size="small">Edit</Button>
-                </Link>
-                <Link
                   to={`/products/buy/${item.id}`}
                   style={{ textDecoration: "none", margin: "0 auto" }}
                 >
