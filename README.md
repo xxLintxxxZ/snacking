@@ -6,8 +6,9 @@ User can buy snacks from the shop.
 ### Technical Used
 
 - React
-- JavaScript's fetch API
 - MUI
+- Django
+- Postgresql
 
 ### User Stories
 
