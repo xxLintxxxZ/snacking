@@ -1,13 +1,12 @@
 // import { useQuery, useQueryClient } from "react-query";
 import { useState, useEffect } from "react";
-import { Link, Outlet } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import { Typography } from "@mui/material";
-import { Button } from "@mui/material";
 import { Container } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 // require('dotenv').config()
@@ -60,24 +59,6 @@ function ProductsPub() {
   }, [URL]);
 
   console.log(prod);
-
-  const del = async (a, b) => {
-    await fetch(URL + "/products/" + a, {
-      method: "DELETE",
-    })
-      .then((res) => res.text())
-      .then((res) => console.log(res));
-
-    prod.splice(b, 1);
-    setRefresh(true);
-
-    setTimeout(function () {
-      navigate("/products");
-    }, 5000);
-    setRefresh(false);
-    return refresh;
-  };
-
 
   return (
     <Container sx={{ px : 5, py: 6 }} fixed>
