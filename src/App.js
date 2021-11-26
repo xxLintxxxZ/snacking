@@ -66,6 +66,7 @@ function App() {
       {/* <Navbar /> */}
       <NavBarPte />
       <Routes>
+        <Route path="/" element={<Home2 />} />
         <Route path="logout" element={<Home2 />} />
         <Route path="login" element={<Login />} />
         <Route path="productsAdmin" element={<ProductsAdmin />} />
