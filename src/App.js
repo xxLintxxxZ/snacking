@@ -18,7 +18,8 @@ import { useAtom } from "jotai";
 import { testAtom } from "./components/Login";
 import ProductsAdmin from "./components/ProductsAdmin";
 import ProductsPub from "./components/ProductsPub";
-import NavBarPte from "./components/NavbarPte";
+// import NavBarPte from "./components/NavbarPte";
+import NavBarPte2 from "./components/NavbarPte2";
 
 function App() {
   const [isToken] = useAtom(testAtom);
@@ -64,7 +65,7 @@ function App() {
   return (
     <div className="App">
       {/* <Navbar /> */}
-      <NavBarPte />
+      <NavBarPte2 />
       <Routes>
         <Route path="/" element={<Home2 />} />
         <Route path="logout" element={<Home2 />} />
